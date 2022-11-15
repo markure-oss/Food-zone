@@ -42,7 +42,7 @@ export default function NextButton({ percentage, ScrollTo }) {
       <Svg width={size} height={size} >
         <G rotation={-90} origin={center}>
           <Circle
-            stroke="#e6e7e8"
+            stroke="grey"
             strokeWidth={strokeWidth}
             cx={center}
             cy={center}
@@ -50,14 +50,14 @@ export default function NextButton({ percentage, ScrollTo }) {
           />
           <Circle
             ref={progressRef}
-            stroke="#1E2A3F"
+            stroke="#FB741D"
             strokeWidth={strokeWidth}
             cx={center}
             cy={center}
             r={radius}
             strokeDasharray={circumference}
             strokeDashoffset={circumference - (circumference * 60) / 100}
-            fill='white'
+            fill='#1E2A3F'
           />
         </G>
       </Svg>
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   },
   button: {
     position: 'absolute',
-    backgroundColor: '#1E2A3F',
+    backgroundColor: '#FB741D',
     borderRadius: 100,
     padding: 20
   }
