@@ -4,6 +4,8 @@ import slides from '../slides'
 import OnboardingItem from '../components/OnboardingItem'
 import Paginator from '../components/Paginator'
 import NextButton from '../components/NextButton'
+import { COLOR } from '../assets/font/color'
+
 export default function Onboarding({ navigation }) {
   const [currentIndex, setCurrentItem] = useState(0)
   const scrollX = useRef(new Animated.Value(0)).current
@@ -61,6 +63,6 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: "#1E2A3F"
+    backgroundColor: COLOR.mainColor
   }
 })

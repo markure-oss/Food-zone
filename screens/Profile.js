@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Platform, StatusBar, Image, TouchableOpacity } 
 import React from 'react'
 import Footer, { currentPage } from "../components/Footer"
 import { Ionicons, Fontisto } from '@expo/vector-icons'
-import Home from './Home'
+import { COLOR } from '../assets/font/color'
 const listButton = [
   {
     id: 1,
@@ -37,7 +37,7 @@ const listButton = [
 ]
 export default function Profile() {
   return (
-    <View style={styles.container}>
+    <View>
       <Image
         style={{ height: 300 }}
         source={require("../assets/images/5870151cee14b617038b7150..png")}

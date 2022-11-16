@@ -3,6 +3,7 @@ import React, { useState, useRef } from 'react'
 import { Foundation, MaterialIcons, Ionicons } from '@expo/vector-icons';
 import { useDispatch } from 'react-redux'
 import { pageChangeSlice } from '../redux/slices/pageChangeSlice'
+import { COLOR } from '../assets/font/color'
 const icons = [
   {
     id: 1,
@@ -48,14 +49,14 @@ export default function Footer() {
               handleChangeButton(icon.namePage)
             }}
           >
-            <Ionicons name={icon.iconName} size={icon.size} color={isPress === icon.id ? '#FB741D' : 'white'} />
+            <Ionicons name={icon.iconName} size={icon.size} color={isPress === icon.id ? COLOR.secondaryColor : 'white'} />
             {
               isPress === icon.id
                 ? (<View style={{
                   width: 5,
                   height: 5,
                   borderRadius: 5,
-                  backgroundColor: '#FB741D'
+                  backgroundColor: COLOR.secondaryColor
                 }}></View>)
                 : (<View style={{
                   width: 5,
@@ -78,7 +79,7 @@ const styles = StyleSheet.create({
     height: '6.5%',
     width: '100%',
     bottom: 0,
-    backgroundColor: "#1E2A3F",
+    backgroundColor: COLOR.mainColor,
     justifyContent: 'space-between',
   },
   icon: {

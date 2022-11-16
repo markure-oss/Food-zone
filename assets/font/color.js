@@ -1,3 +1,4 @@
 export const COLOR = {
-  mainColor: "#FB741D"
+  mainColor: "#1e2027",
+  secondaryColor: '#FB741D'
 }

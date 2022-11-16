@@ -2,8 +2,9 @@ import { View, Text, ImageBackground, StyleSheet, TouchableOpacity, TextInput } 
 import React, { useState } from 'react'
 import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialIcons, AntDesign, FontAwesome, Ionicons } from '@expo/vector-icons';
+import { COLOR } from '../assets/font/color'
 
-export default function Login() {
+export default function Login({ navigation }) {
   const [isDisplayPassword, setIsDisplayPassword] = useState(true)
   const handleDisplayPassword = () => {
     setIsDisplayPassword(!isDisplayPassword)
@@ -40,7 +41,10 @@ export default function Login() {
               }
             </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate('Main')}
+          >
             <LinearGradient colors={['rgba(232, 192, 61, 1)', 'rgba(190, 100, 109, 1)']}
               style={styles.linearColor}
               end={{ x: 1, y: 0.5 }}
@@ -62,7 +66,7 @@ export default function Login() {
               marginLeft: 5,
             }}>
               <Text style={{
-                color: '#FB741D',
+                color: COLOR.secondaryColor,
                 fontSize: 18,
               }}>Sign up</Text>
             </TouchableOpacity>
@@ -80,7 +84,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%',
     height: '60%',
-    backgroundColor: '#1E2A3F',
+    backgroundColor: COLOR.mainColor,
     bottom: 0,
     alignItems: 'center',
   },
@@ -93,7 +97,7 @@ const styles = StyleSheet.create({
   Input: {
     flexDirection: 'row',
     width: '90%',
-    backgroundColor: '#374254',
+    backgroundColor: '#53555e',
     borderRadius: 10,
     fontSize: 20,
     marginTop: 30,

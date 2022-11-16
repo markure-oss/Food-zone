@@ -15,7 +15,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer >
-        <Stack.Navigator initialRouteName='Main' screenOptions={{ headerShown: false }}>
+        <Stack.Navigator initialRouteName='Slides' screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Slides" component={Onboarding} />
           <Stack.Screen name="Loading" component={Loading} />
           <Stack.Screen name="Profile" component={Profile} />

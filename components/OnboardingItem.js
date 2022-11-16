@@ -1,4 +1,6 @@
 import { View, Text, useWindowDimensions, Image, StyleSheet } from 'react-native'
+import { COLOR } from '../assets/font/color'
+
 import React from 'react'
 
 export default function OnboardingItem({ item }) {
@@ -31,7 +33,7 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     fontSize: 20,
     marginBottom: 10,
-    color: '#FB741D',
+    color: COLOR.secondaryColor,
     textAlign: 'center'
   },
   description: {
