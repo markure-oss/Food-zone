@@ -8,6 +8,7 @@ export const pageChangeSlice = createSlice({
   reducers: {
     changePage: (state, action) => {
       state.pageCurrent = action.payload
+      console.log(state.pageCurrent)
     }
   }
 })
