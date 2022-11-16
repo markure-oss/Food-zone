@@ -2,6 +2,10 @@ import { View, Text, StyleSheet, TouchableOpacity, Animated } from 'react-native
 import React, { useRef, useEffect } from 'react'
 import Svg, { G, Circle, Polygon, Rect } from 'react-native-svg'
 import { AntDesign } from '@expo/vector-icons';
+
+
+
+
 export default function NextButton({ percentage, ScrollTo }) {
   const size = 128
   const strokeWidth = 2
@@ -57,7 +61,7 @@ export default function NextButton({ percentage, ScrollTo }) {
             r={radius}
             strokeDasharray={circumference}
             strokeDashoffset={circumference - (circumference * 60) / 100}
-            fill='#1E2A3F'
+            fill='black'
           />
         </G>
       </Svg>

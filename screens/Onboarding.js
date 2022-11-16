@@ -1,9 +1,14 @@
+import {StatusBar} from "expo-status-bar";
 import { View, Text, FlatList, StyleSheet, Animated } from 'react-native'
 import React, { useState, useRef } from 'react'
 import slides from '../slides'
 import OnboardingItem from '../components/OnboardingItem'
 import Paginator from '../components/Paginator'
 import NextButton from '../components/NextButton'
+
+
+
+
 export default function Onboarding({ navigation }) {
   const [currentIndex, setCurrentItem] = useState(0)
   const scrollX = useRef(new Animated.Value(0)).current
@@ -26,6 +31,7 @@ export default function Onboarding({ navigation }) {
   }
   return (
     <View style={styles.container}>
+      <StatusBar style={"light"} />
       <View style={{ flex: 5 }}>
         <FlatList
           data={slides}
@@ -55,12 +61,13 @@ export default function Onboarding({ navigation }) {
   )
 }
 
+
 const styles = StyleSheet.create({
   container: {
     width: '100%',
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: "#1E2A3F"
+    backgroundColor: "black"
   }
 })

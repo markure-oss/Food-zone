@@ -22,11 +22,11 @@ export default function Landing({ navigation }) {
               style={styles.linearColor}
               end={{ x: 1, y: 0.5 }}
             >
-              <Text style={{ fontSize: 20, color: 'white' }}>Login</Text>
+              <Text style={{ fontSize: 20, color: 'white' }}>Get Started</Text>
             </LinearGradient>
           </TouchableOpacity>
           <TouchableOpacity style={[styles.button, { backgroundColor: '#3677d0' }]}>
-            <Text style={{ fontSize: 20, color: 'white' }}>Connect With FaceBook</Text>
+            <Text style={{ fontSize: 20, color: 'white' }}>Already have an account</Text>
           </TouchableOpacity>
         </View>
       </LinearGradient>

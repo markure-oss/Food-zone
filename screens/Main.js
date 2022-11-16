@@ -6,6 +6,9 @@ import Profile from './Profile'
 import Home from './Home'
 import { useSelector } from 'react-redux'
 import { pageSelector } from '../redux/selector'
+
+
+
 export default function Main() {
   const page = useSelector(pageSelector)
   // console.log(page.pageCurrent)
