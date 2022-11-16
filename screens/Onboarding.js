@@ -1,3 +1,4 @@
+import { StatusBar } from "expo-status-bar";
 import { View, Text, FlatList, StyleSheet, Animated } from 'react-native'
 import React, { useState, useRef } from 'react'
 import slides from '../slides'
@@ -28,6 +29,7 @@ export default function Onboarding({ navigation }) {
   }
   return (
     <View style={styles.container}>
+      <StatusBar style={"light"} />
       <View style={{ flex: 5 }}>
         <FlatList
           data={slides}
@@ -56,6 +58,7 @@ export default function Onboarding({ navigation }) {
     </View>
   )
 }
+
 
 const styles = StyleSheet.create({
   container: {

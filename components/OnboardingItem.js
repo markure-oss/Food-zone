@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    flex: 0.7,
+    flex: 1,
     justifyContent: 'center',
   },
   title: {
@@ -37,9 +37,10 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   description: {
-    fontWeight: '300',
+    fontWeight: '200',
+    fontSize: '17',
     textAlign: 'center',
     paddingHorizontal: 64,
-    color: '#62656b'
+    color: '#ffff'
   }
 })
