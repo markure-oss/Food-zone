@@ -11,9 +11,9 @@ export default function Login({ navigation }) {
   }
   return (
     <ImageBackground
-      source={require('../assets/images/fathul-abrar-T-qI_MI2EMA-unsplash.jpg')}
+      source={require('../assets/images/image-login-1.jpg')}
       resizeMode="cover"
-      style={{ flex: 1, justifyContent: 'center' }}
+      style={{ flex: 1, justifyContent: 'center', height: '45%'}}
     >
       <LinearGradient colors={['rgba(107, 107, 107, 0.5)', 'rgba(0, 0, 0, 0.8)']} style={{ flex: 1 }}>
         <View style={styles.content}>
@@ -68,7 +68,7 @@ export default function Login({ navigation }) {
               <Text style={{
                 color: COLOR.secondaryColor,
                 fontSize: 18,
-              }}>Sign up</Text>
+              }}>Sign Up</Text>
             </TouchableOpacity>
           </View>
         </View>

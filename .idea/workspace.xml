@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19840ed3-8c00-48d5-95b3-5297d083410a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/images/image-login-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/image-signUp.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screens/SignUp.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Login.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +24,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2Hbhb7UdKFwujtL9C7oudROrYA7" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -28,7 +36,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/admin/Documents/Code/Deffzone/react-app",
+    "last_opened_file_path": "/Users/admin/Documents/Code/Deffzone/Food-zone",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -51,6 +59,7 @@
       <option name="presentableId" value="Default" />
       <updated>1668559763041</updated>
       <workItem from="1668559764250" duration="12519000" />
+      <workItem from="1668677862653" duration="164000" />
     </task>
     <servers />
   </component>
