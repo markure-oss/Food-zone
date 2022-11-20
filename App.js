@@ -5,13 +5,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 //Screens
 import Onboarding from './screens/Onboarding';
-import Loading from './components/Loading'
-import Profile from './screens/Profile'
-import Main from './screens/Main'
-import Landing from './screens/Landing'
-import Login from './screens/Login'
-import SignUp from "./screens/SignUp";
-
+import Loading from './components/Loading';
+import Profile from './screens/Profile';
+import Main from './screens/Main';
+import Landing from './screens/Landing';
+import Login from './screens/Login';
+import SignUp from './screens/SignUp'
+import ProductContainer from "./screens/product/ProductContainer";
 
 //redux
 import store from './redux/store'
@@ -19,21 +19,21 @@ import { Provider } from 'react-redux'
 
 
 
-
-
 export default function App() {
   const Stack = createNativeStackNavigator();
   return (
-    <Provider store={store}>
-      <NavigationContainer >
-        <Stack.Navigator initialRouteName='Main' screenOptions={{ headerShown: false }}>
-          {/*<Stack.Screen name="Slides" component={Onboarding} />*/}
-          {/*<Stack.Screen name="Landing" component={Landing} />*/}
-          {/*<Stack.Screen name="Loading" component={Loading} />*/}
-          {/*<Stack.Screen name="Profile" component={Profile} />*/}
-          {/*<Stack.Screen name="Main" component={Main} />*/}
+  <Provider store={store}>
+    <StatusBar style={"light"} />
+    <NavigationContainer >
+        <Stack.Navigator initialRouteName='ProductContainer' screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="Slides" component={Onboarding} />
+          <Stack.Screen name="Landing" component={Landing} />
+          <Stack.Screen name="Loading" component={Loading} />
+          <Stack.Screen name="Profile" component={Profile} />
+          <Stack.Screen name="Main" component={Main} />
           <Stack.Screen name="Login" component={Login} />
-          {/*<Stack.Screen name="SignUp" component={SignUp} />*/}
+          <Stack.Screen name="SignUp" component={SignUp} />
+          <Stack.Screen name="ProductContainer" component={ProductContainer} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
