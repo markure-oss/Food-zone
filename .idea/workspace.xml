@@ -5,7 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19840ed3-8c00-48d5-95b3-5297d083410a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/data/products.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/Product-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screens/SignUp.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screens/product/ProductCard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screens/product/ProductContainer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screens/product/ProductList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/OnboardingItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/OnboardingItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Login.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,27 +28,32 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2Hbhb7UdKFwujtL9C7oudROrYA7" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/admin/Documents/Code/Deffzone/react-app",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/admin/Documents/Code/Deffzone/Food-zone&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/assets/images" />
+      <recent name="$PROJECT_DIR$/assets/data" />
+      <recent name="$PROJECT_DIR$/screens" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -51,6 +65,8 @@
       <option name="presentableId" value="Default" />
       <updated>1668559763041</updated>
       <workItem from="1668559764250" duration="12519000" />
+      <workItem from="1668769083532" duration="2256000" />
+      <workItem from="1668843896825" duration="5643000" />
     </task>
     <servers />
   </component>
