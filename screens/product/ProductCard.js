@@ -8,17 +8,30 @@ import {
     Dimensions
 } from "react-native";
 
-let { width } = Dimensions.get("window");
+let {width} = Dimensions.get("window");
 
 const ProductCard = (props) => {
-    const { image, name, price, countInStock } = props;
+    const {image, name, price, countInStock} = props;
 
     return (
         <View style={styles.container}>
-            <Image style={styles.image} />
-            <View style={styles.card} />
-            <Text style={styles.title} />
-            <Text style={styles.price} />
+            <Image style={styles.image}
+                   resizeMode={"contain"}
+                   source={{uri: image ? image : 'https://media.istockphoto.com/id/173240148/photo/one-green-pea-on-plate-table-setting-with-clipping-path.jpg?b=1&s=170667a&w=0&k=20&c=lnUXrKFxY4V6GdYmUm8XcbJJ66vI87WjB79CVKuXjvE='}}
+            />
+            <View style={styles.card}/>
+            <Text style={styles.title}>
+                {name.length > 15 ? name.substring(0, 15 - 3)
+                    + '...' : name
+                }
+            </Text>
+            <Text style={styles.price}>${price}</Text>
+
+            { countInStock > 0 ? (
+                <View style={{marginBottom: 60}}>
+                    <Button title={'Add'} color={'green'} />
+                </View>
+            ) : <Text style={{ marginTop: 20 }}>Currently Unavailable</Text>}
         </View>
     )
 }
@@ -33,18 +46,31 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         marginLeft: 10,
         alignItems: 'center',
+        elevation: 8,
+        backgroundColor: 'white'
     },
     image: {
-
+        width: width / 2 - 20 -10,
+        height: width / 2 -20 -30,
+        backgroundColor: 'transparent',
+        position: 'absolute',
+        top: -45
     },
     card: {
-
+        marginBottom: 10,
+        height: width / 2 - 20 - 90,
+        width: width / 2 - 20 - 10,
+        backgroundColor: 'transparent'
     },
     title: {
-
+        fontWeight: 'bold',
+        fontSize: 14,
+        textAlign: "center"
     },
     price: {
-
+        fontSize: 20,
+        marginTop: 10,
+        color: 'orange'
     }
 })
 

@@ -3,7 +3,7 @@ import React from 'react'
 import Footer, { currentPage } from "../components/Footer"
 import { Ionicons, Fontisto } from '@expo/vector-icons'
 import Profile from './Profile'
-import Home from './Home'
+import Home from './navigation/Home'
 import Notifications from './Notifications'
 import { useSelector } from 'react-redux'
 import { pageSelector } from '../redux/selector'

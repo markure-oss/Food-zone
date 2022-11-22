@@ -1,16 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, LogBox } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+
 
 // Navigator
 import HomeNavigation from './Navigators/HomeNavigator';
 import Main from './Navigators/Main';
+
 
 //redux
 import store from './redux/store'
 import { Provider } from 'react-redux'
 
 
+LogBox.ignoreAllLogs(true);
 
 export default function App() {
 
