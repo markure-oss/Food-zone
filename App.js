@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, LogBox } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 //Screens
 import Onboarding from './screens/Onboarding';
@@ -19,6 +20,9 @@ import { Provider } from 'react-redux'
 
 
 LogBox.ignoreAllLogs(true);
+const Stack = createNativeStackNavigator();
+
+
 
 export default function App() {
 
