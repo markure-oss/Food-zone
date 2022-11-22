@@ -20,7 +20,7 @@ export default function Main() {
             : page === "Notifications" ? <Notifications />
               : page === "Category" ? <Profile /> : false
       }
-      <Footer />
+      {/* <Footer /> */}
     </View >
   )
 }
