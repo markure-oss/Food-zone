@@ -11,7 +11,6 @@ import Main from './screens/Main';
 import Landing from './screens/Landing';
 import Login from './screens/Login';
 import SignUp from './screens/SignUp'
-import SearchedProduct from "./screens/product/SearchedProduct";
 import ProductContainer from "./screens/product/ProductContainer";
 
 //redux
@@ -38,7 +37,6 @@ export default function App() {
           <Stack.Screen name="Main" component={Main} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="SignUp" component={SignUp} />
-          {/*<Stack.Screen name="SearchedProduct" component={SearchedProduct} />*/}
           <Stack.Screen name="ProductContainer" component={ProductContainer} />
         </Stack.Navigator>
       </NavigationContainer>
