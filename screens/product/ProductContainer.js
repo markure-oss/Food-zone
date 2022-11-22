@@ -29,7 +29,7 @@ const data = require('../../assets/data/products.json');
 const categoriesData = require('../../assets/data/categories.json');
 
 
-const ProductContainer = () => {
+const ProductContainer = (props) => {
 
     const [products, setProducts] = useState([]);
     const [productsFiltered, setProductFiltered] = useState([]);
@@ -125,6 +125,7 @@ const ProductContainer = () => {
                             // horizontal
                             data={products}
                             renderItem={({ item }) => <ProductList
+                                navigation={props.navigation}
                                 key={item.id}
                                 item={item}
                             />}
@@ -144,7 +145,7 @@ export default ProductContainer;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // marginTop: 40,
+        marginTop: 40,
         marginBottom: 150,
     },
     upperHeaderPlaceholder: {
