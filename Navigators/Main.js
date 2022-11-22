@@ -19,7 +19,6 @@ export default function Main() {
       activeColor={COLOR.secondaryColor}
       inactiveColor="white"
       barStyle={{ backgroundColor: COLOR.mainColor }}
-      // initialRouteName="Home"
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,

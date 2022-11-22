@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     View,
     Text,
@@ -15,10 +15,10 @@ import {
 
 import ProductList from './ProductList';
 import searchedProduct from "./SearchedProduct";
-import {Foundation, Ionicons} from "@expo/vector-icons";
+import { Foundation, Ionicons } from "@expo/vector-icons";
 import { AntDesign } from '@expo/vector-icons';
 
-import {WINDOW_HEIGHT} from "../../shared/Dimensions";
+import { WINDOW_HEIGHT } from "../../shared/Dimensions";
 import SearchedProduct from "./SearchedProduct";
 import Banner from "../../components/Banner";
 
@@ -26,7 +26,7 @@ import baseUrl from "../../common/baseUrl";
 import axios from "axios";
 
 const data = require('../../assets/data/products.json');
-const  categoriesData = require('../../assets/data/categories.json');
+const categoriesData = require('../../assets/data/categories.json');
 
 
 const ProductContainer = () => {
@@ -75,7 +75,7 @@ const ProductContainer = () => {
     return (
         <View>
             <View style={styles.container}>
-                <StatusBar barStyle={"light-content"}/>
+                <StatusBar barStyle={"light-content"} />
                 <SafeAreaView>
                     <View style={styles.upperHeaderPlaceholder} />
                 </SafeAreaView>
@@ -94,7 +94,7 @@ const ProductContainer = () => {
                                 onChangeText={(text) => searchProduct(text)}
                             />
                             {focus == true ? (
-                                <AntDesign name="closecircle" size={16} color="white" onPress={onBlur} style={styles.closeIcon}/>
+                                <AntDesign name="closecircle" size={16} color="white" onPress={onBlur} style={styles.closeIcon} />
                             ) : null}
                         </View>
                         <Foundation name="shopping-cart" style={styles.cartIcon} size={24} color="white" />
@@ -103,7 +103,7 @@ const ProductContainer = () => {
                             style={styles.avatarIcon}
                         />
                     </View>
-                    <View style={styles.lowerHeader}/>
+                    <View style={styles.lowerHeader} />
                 </SafeAreaView>
                 <ScrollView>
                     <View style={styles.paddingForHeader} />
@@ -112,19 +112,19 @@ const ProductContainer = () => {
             </View>
             {focus == true ? (
                 <SearchedProduct
-                    productsFiltered = {productsFiltered}
+                    productsFiltered={productsFiltered}
                 />
             ) : (
                 <View>
                     <View>
                         <Banner />
                     </View>
-                    <View style={{marginTop: 30}}>
+                    <View style={{ marginTop: 30 }}>
                         <FlatList
                             numColumns={2}
                             // horizontal
                             data={products}
-                            renderItem={({item}) => <ProductList
+                            renderItem={({ item }) => <ProductList
                                 key={item.id}
                                 item={item}
                             />}
