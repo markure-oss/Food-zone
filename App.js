@@ -1,17 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-//Screens
-import Onboarding from './screens/Onboarding';
-import Loading from './components/Loading';
-import Profile from './screens/Profile';
-import Main from './screens/Main';
-import Landing from './screens/Landing';
-import Login from './screens/Login';
-import SignUp from './screens/SignUp'
-import ProductContainer from "./screens/product/ProductContainer";
+// Navigator
+import HomeNavigation from './Navigators/HomeNavigator';
+import Main from './Navigators/Main';
 
 //redux
 import store from './redux/store'
@@ -20,21 +13,12 @@ import { Provider } from 'react-redux'
 
 
 export default function App() {
-  const Stack = createNativeStackNavigator();
+
   return (
-  <Provider store={store}>
-    <StatusBar style={"light"} />
-    <NavigationContainer >
-        <Stack.Navigator initialRouteName='ProductContainer' screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Slides" component={Onboarding} />
-          <Stack.Screen name="Landing" component={Landing} />
-          <Stack.Screen name="Loading" component={Loading} />
-          <Stack.Screen name="Profile" component={Profile} />
-          <Stack.Screen name="Main" component={Main} />
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="SignUp" component={SignUp} />
-          <Stack.Screen name="ProductContainer" component={ProductContainer} />
-        </Stack.Navigator>
+    <Provider store={store}>
+      <StatusBar style={"light"} />
+      <NavigationContainer>
+        <Main />
       </NavigationContainer>
     </Provider>
   );
