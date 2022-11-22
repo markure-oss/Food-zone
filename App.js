@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, LogBox } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -11,6 +11,7 @@ import Main from './screens/Main';
 import Landing from './screens/Landing';
 import Login from './screens/Login';
 import SignUp from './screens/SignUp'
+import SearchedProduct from "./screens/product/SearchedProduct";
 import ProductContainer from "./screens/product/ProductContainer";
 
 //redux
@@ -18,6 +19,7 @@ import store from './redux/store'
 import { Provider } from 'react-redux'
 
 
+LogBox.ignoreAllLogs(true);
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -33,6 +35,7 @@ export default function App() {
           <Stack.Screen name="Main" component={Main} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="SignUp" component={SignUp} />
+          {/*<Stack.Screen name="SearchedProduct" component={SearchedProduct} />*/}
           <Stack.Screen name="ProductContainer" component={ProductContainer} />
         </Stack.Navigator>
       </NavigationContainer>
