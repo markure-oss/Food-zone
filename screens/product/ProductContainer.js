@@ -24,6 +24,7 @@ import Banner from "../../components/Banner";
 
 import baseUrl from "../../common/baseUrl";
 import axios from "axios";
+import CategoryFilter from './Category/CategoryFilter';
 
 const data = require('../../assets/data/products.json');
 const categoriesData = require('../../assets/data/categories.json');
@@ -115,11 +116,15 @@ const ProductContainer = (props) => {
                     productsFiltered={productsFiltered}
                 />
             ) : (
-                <View>
+                <ScrollView>
+                    <View>
                     <View>
                         <Banner />
                     </View>
-                    <View style={{ marginTop: 30 }}>
+                    <View>
+                        <CategoryFilter />
+                    </View>
+                    <View style={{ marginTop: 80 }}>
                         <FlatList
                             numColumns={2}
                             // horizontal
@@ -133,6 +138,7 @@ const ProductContainer = (props) => {
                         />
                     </View>
                 </View>
+                </ScrollView>
             )}
         </View>
     )
@@ -145,7 +151,8 @@ export default ProductContainer;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 40,
+        //fix header on android : margin-top: 40
+        // marginTop: 40,
         marginBottom: 150,
     },
     upperHeaderPlaceholder: {
