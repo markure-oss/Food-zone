@@ -1,4 +1,4 @@
-import {Text, View, FlatList, Image, Dimensions, ScrollView, SafeAreaView, StyleSheet} from "react-native";
+import { Text, View, FlatList, Image, Dimensions, ScrollView, SafeAreaView, StyleSheet } from "react-native";
 
 import {COLOR} from "../../assets/font/color";
 
@@ -6,10 +6,10 @@ let { width, height } = Dimensions.get("window")
 
 
 const SearchedProduct = (props) => {
-    const { productsFiltered } = props; 
+    const { productsFiltered } = props;
 
-    if(productsFiltered.length > 0) {
-        const searchList = ({item}) => (
+    if (productsFiltered.length > 0) {
+        const searchList = ({ item }) => (
             <View>
                 <View style={{
                     marginTop: 20,
@@ -51,7 +51,7 @@ const SearchedProduct = (props) => {
                 </View>
             </View>
         )
-    
+
         return (
             <SafeAreaView>
             <FlatList
@@ -82,10 +82,10 @@ const SearchedProduct = (props) => {
                 }} 
                 source={{ uri: 'https://img.freepik.com/premium-vector/professional-detective-with-mustaches-magnifier-follows-footprints_87689-1154.jpg'}}
                 />
-                <Text style={{ 
-                    alignSelf:  'center',
+                <Text style={{
+                    alignSelf: 'center',
                     marginTop: 40,
-                    }}>
+                }}>
                     No Products Match The Selected Criteria !
                 </Text>
             </View>

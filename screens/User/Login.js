@@ -2,7 +2,7 @@ import { View, Text, ImageBackground, StyleSheet, TouchableOpacity, TextInput } 
 import React, { useState } from 'react'
 import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialIcons, AntDesign, FontAwesome, Ionicons } from '@expo/vector-icons';
-import { COLOR } from '../assets/font/color'
+import { COLOR } from '../../assets/font/color'
 
 export default function Login({ navigation }) {
   const [isDisplayPassword, setIsDisplayPassword] = useState(true)
@@ -13,7 +13,7 @@ export default function Login({ navigation }) {
     <ImageBackground
       source={require('../assets/images/image-login-1.jpg')}
       resizeMode="cover"
-      style={{ flex: 1, justifyContent: 'center', height: '45%'}}
+      style={{ flex: 1, justifyContent: 'center', height: '45%' }}
     >
       <LinearGradient colors={['rgba(107, 107, 107, 0.5)', 'rgba(0, 0, 0, 0.8)']} style={{ flex: 1 }}>
         <View style={styles.content}>

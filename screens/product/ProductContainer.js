@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     View,
     Text,
@@ -17,10 +17,10 @@ let {height} = Dimensions.get("window");
 
 import ProductList from './ProductList';
 import searchedProduct from "./SearchedProduct";
-import {Foundation, Ionicons} from "@expo/vector-icons";
+import { Foundation, Ionicons } from "@expo/vector-icons";
 import { AntDesign } from '@expo/vector-icons';
 
-import {WINDOW_HEIGHT} from "../../shared/Dimensions";
+import { WINDOW_HEIGHT } from "../../shared/Dimensions";
 import SearchedProduct from "./SearchedProduct";
 import Banner from "../../components/Banner";
 import CategoryFilter from "./Category/CategoryFilter";
@@ -97,7 +97,7 @@ const ProductContainer = (props) => {
     return (
         <View>
             <View style={styles.container}>
-                <StatusBar barStyle={"light-content"}/>
+                <StatusBar barStyle={"light-content"} />
                 <SafeAreaView>
                     <View style={styles.upperHeaderPlaceholder} />
                 </SafeAreaView>
@@ -116,7 +116,7 @@ const ProductContainer = (props) => {
                                 onChangeText={(text) => searchProduct(text)}
                             />
                             {focus == true ? (
-                                <AntDesign name="closecircle" size={16} color="white" onPress={onBlur} style={styles.closeIcon}/>
+                                <AntDesign name="closecircle" size={16} color="white" onPress={onBlur} style={styles.closeIcon} />
                             ) : null}
                         </View>
                         <Foundation name="shopping-cart" style={styles.cartIcon} size={24} color="white" />
@@ -125,7 +125,7 @@ const ProductContainer = (props) => {
                             style={styles.avatarIcon}
                         />
                     </View>
-                    <View style={styles.lowerHeader}/>
+                    <View style={styles.lowerHeader} />
                 </SafeAreaView>
                 <ScrollView>
                     <View style={styles.paddingForHeader} />
@@ -134,7 +134,7 @@ const ProductContainer = (props) => {
             </View>
             {focus == true ? (
                 <SearchedProduct
-                    productsFiltered = {productsFiltered}
+                    productsFiltered={productsFiltered}
                 />
             ) : (
                 <ScrollView style={styles.productMain}>
@@ -181,6 +181,7 @@ export default ProductContainer;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        //fix header on android : margin-top: 40
         // marginTop: 40,
         marginBottom: 150,
         backgroundColor: COLOR.mainColor
