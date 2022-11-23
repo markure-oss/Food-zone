@@ -10,6 +10,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 // NavigatorStack
 import HomeNavigation from './HomeNavigator'
+import CartNavigator from './CartNavigator'
 
 const Tab = createMaterialBottomTabNavigator()
 export default function Main() {
@@ -42,7 +43,7 @@ export default function Main() {
       />
       <Tab.Screen
         name="Cart"
-        component={HomeNavigation}
+        component={CartNavigator}
         options={{
           tabBarIcon: ({ color }) => (
             <Icon

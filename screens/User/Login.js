@@ -11,7 +11,7 @@ export default function Login({ navigation }) {
   }
   return (
     <ImageBackground
-      source={require('../assets/images/image-login-1.jpg')}
+      source={require('../../assets/images/image-login-1.jpg')}
       resizeMode="cover"
       style={{ flex: 1, justifyContent: 'center', height: '45%' }}
     >

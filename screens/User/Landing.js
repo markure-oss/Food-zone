@@ -5,7 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 export default function Landing({ navigation }) {
   return (
     <ImageBackground
-      source={require('../assets/images/monika-grabkowska-jsgJtBOR6jY-unsplash.jpg')}
+      source={require('../../assets/images/monika-grabkowska-jsgJtBOR6jY-unsplash.jpg')}
       resizeMode="cover"
       style={{ flex: 1, justifyContent: 'center' }}
     >

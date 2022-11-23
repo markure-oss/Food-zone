@@ -10,7 +10,7 @@ import {
     Image,
     TextInput,
     ScrollView,
-    Dimensions
+    Dimensions, Platform
 } from "react-native";
 
 import ProductList from './ProductList';
@@ -145,7 +145,7 @@ export default ProductContainer;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 40,
+        marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
         marginBottom: 150,
     },
     upperHeaderPlaceholder: {
