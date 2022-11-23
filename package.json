@@ -9,12 +9,11 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@react-navigation/bottom-tabs": "^6.4.1",
-    "@react-navigation/material-bottom-tabs": "^6.2.5",
-    
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.10.14",
+    "@react-navigation/bottom-tabs": "^6.4.1",
+    "@react-navigation/material-bottom-tabs": "^6.2.5",
     "@react-navigation/native": "^6.0.14",
     "@react-navigation/native-stack": "^6.9.2",
     "@reduxjs/toolkit": "^1.9.0",
