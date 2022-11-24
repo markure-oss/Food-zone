@@ -13,6 +13,8 @@ import {
     Dimensions
 } from "react-native";
 
+let {height} = Dimensions.get("window");
+
 import ProductList from './ProductList';
 import searchedProduct from "./SearchedProduct";
 import {Foundation, Ionicons} from "@expo/vector-icons";
@@ -21,42 +23,47 @@ import { AntDesign } from '@expo/vector-icons';
 import {WINDOW_HEIGHT} from "../../shared/Dimensions";
 import SearchedProduct from "./SearchedProduct";
 import Banner from "../../components/Banner";
+import CategoryFilter from "./Category/CategoryFilter";
 
 import baseUrl from "../../common/baseUrl";
 import axios from "axios";
+import {COLOR} from "../../assets/font/color";
 
 const data = require('../../assets/data/products.json');
-const  categoriesData = require('../../assets/data/categories.json');
+const  productCategories = require('../../assets/data/categories.json');
 
 
-const ProductContainer = () => {
+const ProductContainer = (props) => {
 
     const [products, setProducts] = useState([]);
     const [productsFiltered, setProductFiltered] = useState([]);
     const [focus, setFocus] = useState();
     const [categories, setCategories] = useState([]);
-    const [active, setActive] = useState([]);
+    const [productCtg, setProductCtg] = useState([]);
+    const [active, setActive] = useState();
     const [initialState, setInitialState] = useState([]);
 
     useEffect(() => {
         setProducts(data);
         setProductFiltered(data);
         setFocus(false);
-        setCategories(categoriesData);
+        setCategories(productCategories);
+        setProductCtg(data);
         setActive(-1);
         setInitialState(data);
 
         return (() => {
-            setProducts([])
-            setProductFiltered([])
-            setFocus()
-            setCategories([])
-            setActive([])
-            setInitialState([])
+            setProducts([]);
+            setProductFiltered([]);
+            setFocus();
+            setCategories([]);
+            setActive();
+            setInitialState();
         })
     }, [])
 
 
+    //Product Methods
     const searchProduct = (text) => {
         setProductFiltered(
             products.filter((i) => i.name.toLowerCase().includes(text.toLowerCase()))
@@ -68,6 +75,21 @@ const ProductContainer = () => {
     const onBlur = () => {
         setFocus(false);
     }
+
+
+    // Categories
+    const changeCtg = (ctg) => {
+        {
+            ctg === "all"
+                ? [setProductCtg(initialState), setActive(true)]
+                : [
+                    setProductCtg(
+                        products.filter((i) => i.category.$oid === ctg),
+                        setActive(true)
+                    ),
+                ];
+        }
+    };
 
 
 
@@ -115,23 +137,38 @@ const ProductContainer = () => {
                     productsFiltered = {productsFiltered}
                 />
             ) : (
-                <View>
+                <ScrollView style={styles.productMain}>
                     <View>
-                        <Banner />
+                        <View style={styles.productHome}>
+                            <Banner />
+                        </View>
+                        <View>
+                            <CategoryFilter
+                                categories={categories}
+                                categoryFilter={changeCtg}
+                                productCtg={productCtg}
+                                active={active}
+                                setActive={setActive}
+                            />
+                        </View>
+                        {productCtg.length > 0 ? (
+                            <View style={styles.listContainer}>
+                                {productCtg.map((item) => {
+                                    return (
+                                        <ProductList
+                                            key={item._id.$oid}
+                                            item={item}
+                                        />
+                                    )
+                                })}
+                            </View>
+                        ) : (
+                            <View style={styles.errorCtg}>
+                                <Text style={styles.errorTile}>No products found !</Text>
+                            </View>
+                        )}
                     </View>
-                    <View style={{marginTop: 30}}>
-                        <FlatList
-                            numColumns={2}
-                            // horizontal
-                            data={products}
-                            renderItem={({item}) => <ProductList
-                                key={item.id}
-                                item={item}
-                            />}
-                            keyExtractor={item => item.name}
-                        />
-                    </View>
-                </View>
+                </ScrollView>
             )}
         </View>
     )
@@ -146,6 +183,28 @@ const styles = StyleSheet.create({
         flex: 1,
         // marginTop: 40,
         marginBottom: 150,
+        backgroundColor: COLOR.mainColor
+    },
+    listContainer: {
+        height: height,
+        flex: 1,
+        flexDirection: "row",
+        flexWrap: "wrap",
+    },
+    errorCtg: {
+        // justifyContent: 'center',
+        padding: 80,
+        alignItems: 'center',
+        color: 'black',
+        height: height / 2,
+    },
+    errorTile: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: 'white'
+    },
+    productHome : {
+        backgroundColor: COLOR.mainColor
     },
     upperHeaderPlaceholder: {
         height: 40
@@ -154,7 +213,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         width: '100%',
         backgroundColor: '#1e2027',
-        // marginBottom: 30
     },
     scrollViewContent: {
         height: WINDOW_HEIGHT * 2,
@@ -203,5 +261,8 @@ const styles = StyleSheet.create({
     closeIcon: {
         marginLeft: 220,
         marginTop: -12
+    },
+    productMain: {
+        backgroundColor: COLOR.mainColor,
     }
 });

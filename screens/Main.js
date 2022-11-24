@@ -18,7 +18,7 @@ export default function Main() {
         page === "Home" ? <Home />
           : page === "Profile" ? <Profile />
             : page === "Notifications" ? <Notifications />
-              : page === "Category" ? <Profile /> : false
+              : page === "CategoryCardFilter.js" ? <Profile /> : false
       }
       {/* <Footer /> */}
     </View >
