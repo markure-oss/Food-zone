@@ -13,7 +13,7 @@ const icons = [
   },
   {
     id: 2,
-    namePage: "Category",
+    namePage: "CategoryCardFilter.js",
     iconName: "ios-menu-sharp",
     size: 30
   },
