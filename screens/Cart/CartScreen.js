@@ -44,13 +44,13 @@ export default function CartScreen() {
               <View style={styles.order}>
                 <Text style={{ fontSize: 15, color: 'white', fontWeight: '600' }}>Item to Order</Text>
                 <ScrollView style={{ height: 360 }}>
-                  {
+                  {/* {
                     cartItems.map((item, index) => {
                       return (
                         <CartItem key={index} item={item} />
                       )
                     })
-                  }
+                  } */}
                 </ScrollView>
                 <View style={{ width: '100%', justifyContent: 'space-between', marginTop: 15, flexDirection: 'row' }}>
                   <TouchableOpacity
