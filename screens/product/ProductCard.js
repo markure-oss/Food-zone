@@ -6,6 +6,10 @@ import {
     Text,
     Dimensions, ScrollView
 } from "react-native";
+
+import { useDispatch } from 'react-redux'
+import { cartSlice } from '../../redux/slices/cartSlice'
+
 import { Button } from 'react-native-paper';
 import {orange} from "@mui/material/colors";
 
@@ -13,6 +17,11 @@ let {width} = Dimensions.get("window");
 
 const ProductCard = (props) => {
     const {image, name, price, countInStock} = props;
+    const items = props
+    const dispatch = useDispatch()
+    const handleClickAdd = (item) => {
+        dispatch(cartSlice.actions.addToCard(item))
+    }
 
     return (
         <ScrollView>
@@ -32,7 +41,7 @@ const ProductCard = (props) => {
                         <Text style={styles.price}>$ {price}</Text>
                         { countInStock > 0 ? (
                             <View style={{marginBottom: 60}}>
-                                <Button buttonColor='orange' mode="contained" onPress={() => console.log('Add')}>Add</Button>
+                                <Button buttonColor='orange' mode="contained" onPress={() => handleClickAdd(items)}>Add</Button>
                             </View>
                         ) : <Text style={{ marginTop: 20 }}>Currently Unavailable</Text>}
                     </View>
