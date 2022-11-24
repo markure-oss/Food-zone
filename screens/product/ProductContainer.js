@@ -14,7 +14,11 @@ import {
     TouchableOpacity
 } from "react-native";
 
+<<<<<<< HEAD
 let { height } = Dimensions.get("window");
+=======
+let {height} = Dimensions.get("window");
+>>>>>>> e140cc865412a824b0c7d2a10dcbfce90eccd6ee
 
 import ProductList from './ProductList';
 import searchedProduct from "./SearchedProduct";
@@ -32,10 +36,17 @@ import CategoryFilter from "./Category/CategoryFilter";
 
 import baseUrl from "../../common/baseUrl";
 import axios from "axios";
+<<<<<<< HEAD
 import { COLOR } from "../../assets/font/color";
 
 const data = require('../../assets/data/products.json');
 const productCategories = require('../../assets/data/categories.json');
+=======
+import {COLOR} from "../../assets/font/color";
+
+const data = require('../../assets/data/products.json');
+const  productCategories = require('../../assets/data/categories.json');
+>>>>>>> e140cc865412a824b0c7d2a10dcbfce90eccd6ee
 
 
 const ProductContainer = (props) => {
@@ -100,7 +111,11 @@ const ProductContainer = (props) => {
 
 
     return (
+<<<<<<< HEAD
         <>
+=======
+        <View style={styles.bigContainer}>
+>>>>>>> e140cc865412a824b0c7d2a10dcbfce90eccd6ee
             <View style={styles.container}>
                 <StatusBar barStyle={"light-content"} />
                 <SafeAreaView>
@@ -124,6 +139,7 @@ const ProductContainer = (props) => {
                                 <AntDesign name="closecircle" size={16} color="white" onPress={onBlur} style={styles.closeIcon} />
                             ) : null}
                         </View>
+<<<<<<< HEAD
                         <TouchableOpacity
                             style={{ height: '100%', justifyContent: 'center', }}
                             onPress={() => props.navigation.navigate("CartScreen")}
@@ -140,6 +156,13 @@ const ProductContainer = (props) => {
                             source={require('../../assets/images/avatar.png')}
                             style={styles.avatarIcon}
                         />
+=======
+                            <Foundation name="shopping-cart" style={styles.cartIcon} size={24} color="white" />
+                            <Image
+                                source={require('../../assets/images/avatar.png')}
+                                style={styles.avatarIcon}
+                            />
+>>>>>>> e140cc865412a824b0c7d2a10dcbfce90eccd6ee
                     </View>
                     <View style={styles.lowerHeader} />
                 </SafeAreaView>
@@ -153,6 +176,7 @@ const ProductContainer = (props) => {
                     productsFiltered={productsFiltered}
                 />
             ) : (
+<<<<<<< HEAD
                 <ScrollView style={styles.productMain}>
                     <View>
                         <View style={styles.productHome}>
@@ -186,6 +210,40 @@ const ProductContainer = (props) => {
                         )}
                     </View>
                 </ScrollView>
+=======
+                    <ScrollView style={styles.productMain}>
+                        <View>
+                            <View>
+                                <Banner />
+                            </View>
+                            <View>
+                                <CategoryFilter
+                                    categories={categories}
+                                    categoryFilter={changeCtg}
+                                    productCtg={productCtg}
+                                    active={active}
+                                    setActive={setActive}
+                                />
+                            </View>
+                            {productCtg.length > 0 ? (
+                                <View style={styles.listContainer}>
+                                    {productCtg.map((item) => {
+                                        return (
+                                            <ProductList
+                                                key={item._id.$oid}
+                                                item={item}
+                                            />
+                                        )
+                                    })}
+                                </View>
+                            ) : (
+                                <View style={styles.errorCtg}>
+                                    <Text style={styles.errorTile}>No products found !</Text>
+                                </View>
+                            )}
+                        </View>
+                    </ScrollView>
+>>>>>>> e140cc865412a824b0c7d2a10dcbfce90eccd6ee
             )}
         </>
     )
@@ -196,20 +254,33 @@ const ProductContainer = (props) => {
 export default ProductContainer;
 
 const styles = StyleSheet.create({
+    bigContainer: {
+        flex: 1
+    },
     container: {
         // flex: 1, Xoa
         // marginBottom: 150, Xoa
         marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+<<<<<<< HEAD
         backgroundColor: COLOR.mainColor
     },
     listContainer: {
         // height: height, Xoa
+=======
+        marginBottom: 150,
+        backgroundColor: COLOR.mainColor
+    },
+    listContainer: {
+>>>>>>> e140cc865412a824b0c7d2a10dcbfce90eccd6ee
         flex: 1,
         flexDirection: "row",
         flexWrap: "wrap",
     },
     errorCtg: {
+<<<<<<< HEAD
         // justifyContent: 'center',
+=======
+>>>>>>> e140cc865412a824b0c7d2a10dcbfce90eccd6ee
         padding: 80,
         alignItems: 'center',
         color: 'black',
@@ -219,9 +290,12 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         color: 'white'
+<<<<<<< HEAD
     },
     productHome: {
         backgroundColor: COLOR.mainColor
+=======
+>>>>>>> e140cc865412a824b0c7d2a10dcbfce90eccd6ee
     },
     upperHeaderPlaceholder: {
         height: 70
@@ -263,9 +337,14 @@ const styles = StyleSheet.create({
         color: 'white'
     },
     avatarIcon: {
+<<<<<<< HEAD
         marginLeft: 10,
         width: 35,
         height: 35
+=======
+        width: 28,
+        height: 28,
+>>>>>>> e140cc865412a824b0c7d2a10dcbfce90eccd6ee
     },
     searchContainer: {
         flex: 1,
@@ -287,5 +366,9 @@ const styles = StyleSheet.create({
     },
     productMain: {
         backgroundColor: COLOR.mainColor,
+<<<<<<< HEAD
+=======
+        marginTop: -30
+>>>>>>> e140cc865412a824b0c7d2a10dcbfce90eccd6ee
     }
 });
