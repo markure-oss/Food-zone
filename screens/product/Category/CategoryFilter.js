@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react'
-import {View, Text, StyleSheet, ScrollView, FlatList, TouchableOpacity, Image} from "react-native";
+import React, { useEffect, useState } from 'react'
+import { View, Text, StyleSheet, ScrollView, FlatList, TouchableOpacity, Image } from "react-native";
 import CategoryCardFilter from "./CategoryCardFilter";
 const categoryProducts = require('../../../assets/data/categories.json');
 import CategoriesList from './CategoriesList';
@@ -7,7 +7,6 @@ import CategoriesList from './CategoriesList';
 import { COLOR } from "../../../assets/font/color";
 
 const CategoryFilter = (props) => {
-
     return (
 
         <ScrollView
@@ -22,38 +21,37 @@ const CategoryFilter = (props) => {
         >
             <View style={styles.categoryRes}>
                 <TouchableOpacity
-                    key={1}
                     onPress={() => {
                         props.categoryFilter('all'), props.setActive(-1)
                     }}
                 >
-                   <View style={[
-                       styles.allCtg,
-                       props.active == -1 ? styles.Active : styles.inActive
-                   ]}>
-                       <Image
-                           style={styles.categoryItem}
-                           source={{
-                           uri: 'https://cdn-icons-png.flaticon.com/128/706/706997.png'
-                       }} />
-                       <Text style={styles.title}>Categories</Text>
-                   </View>
+                    <View style={[
+                        styles.allCtg,
+                        props.active == -1 ? styles.Active : styles.inActive
+                    ]}>
+                        <Image
+                            style={styles.categoryItem}
+                            source={{
+                                uri: 'https://cdn-icons-png.flaticon.com/128/706/706997.png'
+                            }} />
+                        <Text style={styles.title}>Categories</Text>
+                    </View>
                 </TouchableOpacity>
 
                 {props.categories.map((item) => (
                     <TouchableOpacity
-                        key={item._id}
+                        key={item._id.$oid}
                         onPress={() => {
-                            props.categoryFilter(item._id),
-                            props.setActive(props.categories.indexOf(item))
+                            props.categoryFilter(item._id.$oid),
+                                props.setActive(props.categories.indexOf(item))
                         }}
                     >
                         <View style={[
                             styles.allCtg,
                             props.active == props.categories.indexOf(item) ? styles.Active : styles.inActive
                         ]}>
-                            <Image style={styles.categoryItem} source={{uri: item.imgUrl}} />
-                           <Text style={styles.title}>{item.name}</Text>
+                            <Image style={styles.categoryItem} source={{ uri: item.imgUrl }} />
+                            <Text style={styles.title}>{item.name}</Text>
                         </View>
                     </TouchableOpacity>
                 ))}
@@ -89,7 +87,7 @@ const styles = StyleSheet.create({
     inActive: {
         backgroundColor: '#7f8085'
     },
-    categoryRes:{
+    categoryRes: {
         height: 100,
         flexDirection: "row"
     },

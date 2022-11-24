@@ -10,16 +10,21 @@ import {
     Image,
     TextInput,
     ScrollView,
-    Dimensions, Platform
+    Dimensions, Platform,
+    TouchableOpacity
 } from "react-native";
 
 let { height } = Dimensions.get("window");
 
 import ProductList from './ProductList';
 import searchedProduct from "./SearchedProduct";
-import { Foundation, Ionicons } from "@expo/vector-icons";
-import { AntDesign } from '@expo/vector-icons';
 
+// Icon Import
+import { Foundation, Ionicons, Entypo } from "@expo/vector-icons";
+import { AntDesign } from '@expo/vector-icons';
+import Icon from 'react-native-vector-icons/FontAwesome'
+
+import CartIcon from '../../components/Cart/CartIcon'
 import { WINDOW_HEIGHT } from "../../shared/Dimensions";
 import SearchedProduct from "./SearchedProduct";
 import Banner from "../../components/Banner";
@@ -95,7 +100,7 @@ const ProductContainer = (props) => {
 
 
     return (
-        <View>
+        <>
             <View style={styles.container}>
                 <StatusBar barStyle={"light-content"} />
                 <SafeAreaView>
@@ -119,7 +124,18 @@ const ProductContainer = (props) => {
                                 <AntDesign name="closecircle" size={16} color="white" onPress={onBlur} style={styles.closeIcon} />
                             ) : null}
                         </View>
-                        <Foundation name="shopping-cart" style={styles.cartIcon} size={24} color="white" />
+                        <TouchableOpacity
+                            style={{ height: '100%', justifyContent: 'center', }}
+                            onPress={() => props.navigation.navigate("CartScreen")}
+                        >
+                            <Icon
+                                name="shopping-cart"
+                                style={styles.cartIcon}
+                                size={25}
+                            />
+                            <CartIcon />
+                        </TouchableOpacity>
+
                         <Image
                             source={require('../../assets/images/avatar.png')}
                             style={styles.avatarIcon}
@@ -127,10 +143,10 @@ const ProductContainer = (props) => {
                     </View>
                     <View style={styles.lowerHeader} />
                 </SafeAreaView>
-                <ScrollView>
+                {/* <ScrollView> Xoa het dong nay
                     <View style={styles.paddingForHeader} />
                     <View style={styles.scrollViewContent} />
-                </ScrollView>
+                </ScrollView> */}
             </View>
             {focus == true ? (
                 <SearchedProduct
@@ -156,6 +172,7 @@ const ProductContainer = (props) => {
                                 {productCtg.map((item) => {
                                     return (
                                         <ProductList
+                                            navigation={props.navigation}
                                             key={item._id.$oid}
                                             item={item}
                                         />
@@ -170,7 +187,7 @@ const ProductContainer = (props) => {
                     </View>
                 </ScrollView>
             )}
-        </View>
+        </>
     )
 }
 
@@ -180,13 +197,13 @@ export default ProductContainer;
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        // flex: 1, Xoa
+        // marginBottom: 150, Xoa
         marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-        marginBottom: 150,
         backgroundColor: COLOR.mainColor
     },
     listContainer: {
-        height: height,
+        // height: height, Xoa
         flex: 1,
         flexDirection: "row",
         flexWrap: "wrap",
@@ -207,7 +224,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLOR.mainColor
     },
     upperHeaderPlaceholder: {
-        height: 40
+        height: 70
     },
     header: {
         position: 'absolute',
@@ -219,13 +236,14 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     paddingForHeader: {
-        height: 96,
+        height: 90,
     },
     upperHeader: {
-        height: 40,
+        height: 60,
+        paddingTop: 10,
         flexDirection: 'row',
         alignItems: 'center',
-        paddingHorizontal: 16
+        paddingHorizontal: 16,
     },
     lowerHeader: {
         height: 96
@@ -236,26 +254,31 @@ const styles = StyleSheet.create({
         marginLeft: 8
     },
     cartIcon: {
-        width: 18,
-        height: 20,
-        marginHorizontal: 32,
+        // width: 18,
+        // height: 20,
+        // alignItems: 'center',
+        // height: '100%',
+        // marginHorizontal: 32,
+        marginHorizontal: 20,
         color: 'white'
     },
     avatarIcon: {
-        width: 28,
-        height: 28
+        marginLeft: 10,
+        width: 35,
+        height: 35
     },
     searchContainer: {
         flex: 1,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     searchInput: {
         position: 'absolute',
         width: '100%',
         backgroundColor: "rgba(225, 225, 225, 0.3)",
         color: 'white',
-        borderRadius: 4,
-        paddingVertical: 4,
+        borderRadius: 10,
+        padding: 10,
+        // paddingVertical: 4,
         paddingLeft: 32
     },
     closeIcon: {

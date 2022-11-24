@@ -1,15 +1,15 @@
 import React from 'react'
-import {Image, Text, TouchableOpacity, StyleSheet, View} from "react-native";
-import {COLOR} from "../../../assets/font/color";
+import { Image, Text, TouchableOpacity, StyleSheet, View } from "react-native";
+import { COLOR } from "../../../assets/font/color";
 
 const CategoryCardFilter = (props) => {
-    const {name, imgUrl} = props;
+    const { name, imgUrl, _id } = props;
     return (
         <TouchableOpacity
-         key={1}
-         style={styles.ctgImage}>
+            key={_id.$oid}
+            style={styles.ctgImage}>
             <Image style={styles.category}
-                   source={{uri: imgUrl}}
+                source={{ uri: imgUrl }}
             />
             <Text style={styles.title}>{name}</Text>
         </TouchableOpacity>

@@ -29,7 +29,7 @@ export default function CartItem(props) {
       <View style={styles.cartItem}>
         <Image
           style={{ width: 100, height: 100 }}
-          source={{ uri: item.image }}
+          source={{ uri: item.image ? item.image : 'https://www.shoshinsha-design.com/wp-content/uploads/2020/05/noimage_icon-1.png' }}
           resizeMode="cover"
         />
         <View style={styles.detailOrderItem}>

@@ -12,8 +12,6 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import HomeNavigation from './HomeNavigator'
 import CartNavigator from './CartNavigator'
 
-// component 
-import CartIcon from '../components/Cart/CartIcon'
 
 const Tab = createMaterialBottomTabNavigator()
 export default function Main() {
@@ -51,12 +49,11 @@ export default function Main() {
           tabBarIcon: ({ color }) => (
             <View>
               <Icon
-                name="shopping-cart"
+                name="bars"
                 style={{ position: 'relative' }}
                 color={color}
                 size={25}
               />
-              <CartIcon />
             </View>
           )
         }}

@@ -8,7 +8,7 @@ import SingleProduct from '../screens/product/SingleProduct';
 // import Slides from '../screens/Onboarding'
 // import Landing from '../screens/User/Landing'
 // import Login from '../screens/User/Login'
-
+import CartScreen from '../screens/Cart/CartScreen'
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +16,8 @@ function HomeNavigation() {
   return (
     <Stack.Navigator initialRouteName='ProductContainer' screenOptions={{ headerShown: false }}>
       <Stack.Screen name="ProductContainer" component={ProductContainer} />
+      <Stack.Screen name="CartScreen" component={CartScreen} />
+
       {/* <Stack.Screen name="Slides" component={Slides} />
       <Stack.Screen name="Landing" component={Landing} />
       <Stack.Screen name="Login" component={Login} /> */}
