@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {View, Text, StyleSheet, ScrollView, FlatList, TouchableOpacity, Image} from "react-native";
-import CategoryCardFilter from "./CategoryCardFilter";
 const categoryProducts = require('../../../assets/data/categories.json');
-import CategoriesList from './CategoriesList';
 
 import { COLOR } from "../../../assets/font/color";
 
@@ -66,11 +64,9 @@ export default CategoryFilter;
 
 const styles = StyleSheet.create({
     allCtg: {
-        // position: 'relative',
         padding: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        // textAlign: 'center',
         margin: 5,
         height: 80,
         shadowColor: "#000",
@@ -84,10 +80,10 @@ const styles = StyleSheet.create({
         borderRadius: 10
     },
     Active: {
-        backgroundColor: '#d2763b'
+        backgroundColor: 'rgba(234,125,62,0.95)'
     },
     inActive: {
-        backgroundColor: '#7f8085'
+        backgroundColor: "#b4b0b0"
     },
     categoryRes:{
         height: 100,

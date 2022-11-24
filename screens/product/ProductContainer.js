@@ -95,7 +95,7 @@ const ProductContainer = (props) => {
 
 
     return (
-        <View>
+        <View style={styles.bigContainer}>
             <View style={styles.container}>
                 <StatusBar barStyle={"light-content"} />
                 <SafeAreaView>
@@ -119,11 +119,11 @@ const ProductContainer = (props) => {
                                 <AntDesign name="closecircle" size={16} color="white" onPress={onBlur} style={styles.closeIcon} />
                             ) : null}
                         </View>
-                        <Foundation name="shopping-cart" style={styles.cartIcon} size={24} color="white" />
-                        <Image
-                            source={require('../../assets/images/avatar.png')}
-                            style={styles.avatarIcon}
-                        />
+                            <Foundation name="shopping-cart" style={styles.cartIcon} size={24} color="white" />
+                            <Image
+                                source={require('../../assets/images/avatar.png')}
+                                style={styles.avatarIcon}
+                            />
                     </View>
                     <View style={styles.lowerHeader} />
                 </SafeAreaView>
@@ -137,38 +137,38 @@ const ProductContainer = (props) => {
                     productsFiltered={productsFiltered}
                 />
             ) : (
-                <ScrollView style={styles.productMain}>
-                    <View>
-                        <View style={styles.productHome}>
-                            <Banner />
-                        </View>
+                    <ScrollView style={styles.productMain}>
                         <View>
-                            <CategoryFilter
-                                categories={categories}
-                                categoryFilter={changeCtg}
-                                productCtg={productCtg}
-                                active={active}
-                                setActive={setActive}
-                            />
+                            <View>
+                                <Banner />
+                            </View>
+                            <View>
+                                <CategoryFilter
+                                    categories={categories}
+                                    categoryFilter={changeCtg}
+                                    productCtg={productCtg}
+                                    active={active}
+                                    setActive={setActive}
+                                />
+                            </View>
+                            {productCtg.length > 0 ? (
+                                <View style={styles.listContainer}>
+                                    {productCtg.map((item) => {
+                                        return (
+                                            <ProductList
+                                                key={item._id.$oid}
+                                                item={item}
+                                            />
+                                        )
+                                    })}
+                                </View>
+                            ) : (
+                                <View style={styles.errorCtg}>
+                                    <Text style={styles.errorTile}>No products found !</Text>
+                                </View>
+                            )}
                         </View>
-                        {productCtg.length > 0 ? (
-                            <View style={styles.listContainer}>
-                                {productCtg.map((item) => {
-                                    return (
-                                        <ProductList
-                                            key={item._id.$oid}
-                                            item={item}
-                                        />
-                                    )
-                                })}
-                            </View>
-                        ) : (
-                            <View style={styles.errorCtg}>
-                                <Text style={styles.errorTile}>No products found !</Text>
-                            </View>
-                        )}
-                    </View>
-                </ScrollView>
+                    </ScrollView>
             )}
         </View>
     )
@@ -179,6 +179,9 @@ const ProductContainer = (props) => {
 export default ProductContainer;
 
 const styles = StyleSheet.create({
+    bigContainer: {
+        flex: 1
+    },
     container: {
         flex: 1,
         marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
@@ -186,13 +189,11 @@ const styles = StyleSheet.create({
         backgroundColor: COLOR.mainColor
     },
     listContainer: {
-        height: height,
         flex: 1,
         flexDirection: "row",
         flexWrap: "wrap",
     },
     errorCtg: {
-        // justifyContent: 'center',
         padding: 80,
         alignItems: 'center',
         color: 'black',
@@ -202,9 +203,6 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         color: 'white'
-    },
-    productHome : {
-        backgroundColor: COLOR.mainColor
     },
     upperHeaderPlaceholder: {
         height: 40
@@ -243,7 +241,7 @@ const styles = StyleSheet.create({
     },
     avatarIcon: {
         width: 28,
-        height: 28
+        height: 28,
     },
     searchContainer: {
         flex: 1,
@@ -264,5 +262,6 @@ const styles = StyleSheet.create({
     },
     productMain: {
         backgroundColor: COLOR.mainColor,
+        marginTop: -30
     }
 });

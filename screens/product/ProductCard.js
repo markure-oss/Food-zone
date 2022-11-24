@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     },
     cardItem: {
         flexDirection: 'row',
-        marginTop: 12
+        marginTop: 10
     },
     image: {
         width: 180,
@@ -91,11 +91,11 @@ const styles = StyleSheet.create({
         color: '#fff',
     },
     price: {
-        fontSize: 18,
+        fontSize: 15,
         marginTop: 10,
         color: '#fff',
-        marginRight: 10,
-        fontWeight: '600'
+        marginRight: 15,
+        fontWeight: '700'
     }
 })
 
