@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, ScrollView, StatusBar, Platform, SafeAreaView, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { LinearGradient } from 'expo-linear-gradient';
-
+// redux
 import { useSelector, useDispatch } from 'react-redux'
 import { cartSlice } from '../../redux/slices/cartSlice'
 import { cartItemsSelector, selectBasketTotal } from '../../redux/selector'
@@ -18,32 +18,35 @@ export default function CartScreen() {
   const handleClickRemoveAll = () => {
     dispatch(cartSlice.actions.removeAll())
   }
+  const a = []
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>My Cart</Text>
-      {/* Wallet */}
-      <View style={styles.wallet}>
-        <LinearGradient colors={['rgba(232, 192, 61, 1)', 'rgba(190, 100, 109, 1)']}
-          style={{ padding: 10, paddingHorizontal: 30, borderRadius: 10 }}
-          end={{ x: 1, y: 0.5 }}
-        >
-          <Text style={{ fontSize: 15, color: 'white' }}>Wallet</Text>
-        </LinearGradient>
-        <Text style={{
-          fontSize: 20,
-          color: 'white',
-        }}>$100.00</Text>
+      <View style={{ width: '100%', alignItems: 'center' }}>
+        <Text style={styles.title}>My Cart</Text>
+        {/* Wallet */}
+        <View style={styles.wallet}>
+          <LinearGradient colors={['rgba(232, 192, 61, 1)', 'rgba(190, 100, 109, 1)']}
+            style={{ padding: 10, paddingHorizontal: 30, borderRadius: 10 }}
+            end={{ x: 1, y: 0.5 }}
+          >
+            <Text style={{ fontSize: 15, color: 'white' }}>Wallet</Text>
+          </LinearGradient>
+          <Text style={{
+            fontSize: 20,
+            color: 'white',
+          }}>$100.00</Text>
+        </View>
+        <View style={styles.line}></View>
       </View>
-      <View style={styles.line}></View>
-
       {/* Order */}
       {
         cartItems.length > 0
           ? (
+
             <>
               <View style={styles.order}>
                 <Text style={{ fontSize: 15, color: 'white', fontWeight: '600' }}>Item to Order</Text>
-                <ScrollView style={{ height: 360 }}>
+                <ScrollView style={{ height: 350 }}>
                   {
                     cartItems.map((item, index) => {
                       return (
@@ -51,6 +54,7 @@ export default function CartScreen() {
                       )
                     })
                   }
+
                 </ScrollView>
                 <View style={{ width: '100%', justifyContent: 'space-between', marginTop: 15, flexDirection: 'row' }}>
                   <TouchableOpacity
@@ -83,14 +87,13 @@ export default function CartScreen() {
               </View>
             </>
           ) : (
-            <View style={{ alignItems: 'center', justifyContent: 'center', height: '50%' }}>
+            <View style={styles.noItem}>
               <Image source={require('../../assets/images/order.png')} style={{ height: 150, width: 150, marginBottom: 20, }} resizeMode="contain" />
               <Text style={{ fontSize: 20, color: 'white', marginBottom: 10 }}>Forgot to place an order, my friend !!</Text>
               <Text style={{ fontSize: 15, color: 'white', opacity: 0.5 }}>Let's go back to order delicious dishes</Text>
             </View>
           )
       }
-
     </SafeAreaView >
   )
 }
@@ -140,13 +143,19 @@ const styles = StyleSheet.create({
   },
   bill: {
     marginTop: 10,
+    marginBottom: 20,
     width: '100%',
     paddingHorizontal: 20,
-    marginBottom: 20,
   },
   label: {
     fontSize: 15,
     color: 'white'
+  },
+  noItem: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '50%', flex: 1,
+    marginTop: 100
   }
 
 })
