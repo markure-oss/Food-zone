@@ -169,7 +169,7 @@ const ProductContainer = (props) => {
                         </View>
                         {productCtg.length > 0 ? (
                             <View style={styles.listContainer}>
-                                {productCtg.map((item) => {
+                                {productCtg.map((item, index) => {
                                     return (
                                         <ProductList
                                             navigation={props.navigation}

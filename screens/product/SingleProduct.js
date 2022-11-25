@@ -22,7 +22,7 @@ export default function SingleProduct(props) {
 const styles = StyleSheet.create({
   container: {
     height: '100%',
-    position: 'relative'
+    position: 'relative',
   },
   imageContainer: {
     backgroundColor: 'white',
