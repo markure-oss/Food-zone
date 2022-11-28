@@ -9,7 +9,7 @@ import SingleProduct from '../screens/product/SingleProduct';
 // import Landing from '../screens/User/Landing'
 // import Login from '../screens/User/Login'
 import CartScreen from '../screens/Cart/CartScreen'
-import messageScreen from "../screens/messageScreen";
+import messageScreen from "../screens/MessageScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,7 +25,7 @@ function HomeNavigation() {
 
       <Stack.Screen name="Product Detail" component={SingleProduct} />
 
-        <Stack.Screen name="MessageScreen" component={messageScreen} />
+      <Stack.Screen name="MessageScreen" component={messageScreen} />
     </Stack.Navigator>
   )
 }

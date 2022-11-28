@@ -34,8 +34,8 @@ import CategoryFilter from "./Category/CategoryFilter";
 import baseUrl from "../../common/baseUrl";
 import axios from "axios";
 import { COLOR } from "../../assets/font/color";
-import {LinearGradient} from "expo-linear-gradient";
-import {Button} from "react-native-paper";
+import { LinearGradient } from "expo-linear-gradient";
+import { Button } from "react-native-paper";
 
 const data = require('../../assets/data/products.json');
 const productCategories = require('../../assets/data/categories.json');
@@ -102,16 +102,16 @@ const ProductContainer = (props) => {
 
 
     //flat Sale product
-    const renderFlatSale = ({item}) => {
+    const renderFlatSale = ({ item }) => {
         const { image, datetime, voucher } = item;
         return (
-            <TouchableOpacity style={{flex: 1}} onPress={() => console.log('FlatSale')}>
+            <TouchableOpacity style={{ flex: 1 }} onPress={() => console.log('FlatSale')}>
                 <View style={styles.flatProductContainer}>
                     <Image style={styles.image}
-                           resizeMode={"cover"}
-                           source={{ uri: image ? image : 'https://images.unsplash.com/photo-1484980972926-edee96e0960d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjh8fGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60' }}
+                        resizeMode={"cover"}
+                        source={{ uri: image ? image : 'https://images.unsplash.com/photo-1484980972926-edee96e0960d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjh8fGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60' }}
                     />
-                    <View/>
+                    <View />
                 </View>
                 <View style={{
                     flexDirection: 'row',
@@ -130,7 +130,7 @@ const ProductContainer = (props) => {
                     </Text>
 
 
-                    <Foundation style={{marginLeft: 18}} name="page-multiple" size={18} color="gray" />
+                    <Foundation style={{ marginLeft: 18 }} name="page-multiple" size={18} color="gray" />
                     <Text style={{
                         marginLeft: 5,
                         color: 'gray',
@@ -196,7 +196,7 @@ const ProductContainer = (props) => {
                 />
             ) : (
                 <ScrollView style={styles.productMain}>
-                    <View style={{marginTop: -20}}>
+                    <View style={{ marginTop: -20 }}>
                         <View style={styles.productHome}>
                             <Banner />
                         </View>
@@ -211,11 +211,11 @@ const ProductContainer = (props) => {
                         </View>
 
                         {/*flat Sale product*/}
-                        <SafeAreaView style={{heigh: 200}}>
+                        <SafeAreaView style={{ heigh: 200 }}>
                             <View style={styles.flatSaleContainer}>
                                 <LinearGradient colors={['rgba(232, 192, 61, 1)', 'rgba(190, 100, 109, 1)']}
-                                                style={[ styles.contentCard ,{ marginLeft: -20}]}
-                                                end={{ x: 1, y: 0.5 }}
+                                    style={[styles.contentCard, { marginLeft: -20 }]}
+                                    end={{ x: 1, y: 0.5 }}
                                 >
                                     <Text style={{ fontSize: 15, color: 'white' }}>Flat Sale</Text>
                                 </LinearGradient>
@@ -225,11 +225,11 @@ const ProductContainer = (props) => {
                                         // onPress={}
                                         style={[
                                             styles.contentCard, {
-                                            fontSize: 15,
-                                            color: 'gray',
-                                            marginRight: -35,
-                                            textDecorationLine: 'underline'
-                                        }]}>
+                                                fontSize: 15,
+                                                color: 'gray',
+                                                marginRight: -35,
+                                                textDecorationLine: 'underline'
+                                            }]}>
                                         see more
                                     </Text>
                                 </TouchableOpacity>
@@ -238,19 +238,20 @@ const ProductContainer = (props) => {
                                 flex: 1,
                             }}>
                                 <FlatList
-                                    style={{flex: 1}}
+                                    style={{ flex: 1 }}
                                     data={flatSale}
                                     renderItem={renderFlatSale}
                                     horizontal={true}
-                                    keyExtractor={item => `${item.id}`}
+                                    // keyExtractor={item => `${item.id}`}
+                                    keyExtractor={item => `${item._id.$oid}`}
                                     showsHorizontalScrollIndicator={false}
                                 />
                             </View>
                         </SafeAreaView>
 
                         <LinearGradient colors={['rgba(232, 192, 61, 1)', 'rgba(190, 100, 109, 1)']}
-                                        style={styles.contentCard}
-                                        end={{ x: 1, y: 0.5 }}
+                            style={styles.contentCard}
+                            end={{ x: 1, y: 0.5 }}
                         >
                             <Text style={{ fontSize: 15, color: 'white' }}>Popular</Text>
                         </LinearGradient>
