@@ -21,36 +21,42 @@ const listButton = [
         id: 1,
         name: "Hung Pham",
         iconName: "ios-person-outline",
+        endButton: "edit",
         sizeIcon: 24
     },
     {
         id: 2,
         name: "ptuanhungg@gmail.com",
         iconName: "chatbox-ellipses-outline",
+        endButton: "edit",
         sizeIcon: 24
     },
     {
         id: 3,
         name: "********",
         iconName: "lock-closed-outline",
+        endButton: "edit",
         sizeIcon: 24
     },
     {
         id: 4,
         name: "Hanoi, VietNam",
         iconName: "home-outline",
+        endButton: "edit",
         sizeIcon: 24
     },
     {
         id: 5,
         name: "Support",
         iconName: "bulb-outline",
+        endButton: "arrow-right",
         sizeIcon: 24
     },
   {
     id: 6,
     name: "Log Out",
     iconName: "settings-outline",
+      endButton: "arrow-right",
     sizeIcon: 24
   }
 ]
@@ -84,7 +90,7 @@ export default function Profile() {
                             <Text style={{fontSize: 17, marginLeft: 10, color: COLOR.mainColor}}>{button.name}</Text>
                           </View>
                           <View>
-                            <Feather name="edit" size={20} color="black" />
+                            <Feather name={button.endButton} size={button.sizeIcon} color="black" />
                           </View>
                         </TouchableOpacity>
                     )
@@ -141,7 +147,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 20,
     marginTop: 40,
-    fontWeight: '800',
+    fontWeight: '600',
     marginBottom: 50
   },
     borderAvatar: {
