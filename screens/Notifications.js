@@ -11,27 +11,27 @@ import {
     TouchableOpacity
 } from 'react-native'
 import React from 'react'
-import {COLOR} from "../assets/font/color";
+import { COLOR } from "../assets/font/color";
 
-import {Entypo, Ionicons} from '@expo/vector-icons';
+import { Entypo, Ionicons } from '@expo/vector-icons';
 
 const Notification = require('../assets/data/notification.json');
 
-let {height} = Dimensions.get("window")
+let { height } = Dimensions.get("window")
 
 
 const Notifications = () => {
-    const renderNotification = ({item}) => {
-        const {iconName, notTitle, description, sizeIcon} = item;
+    const renderNotification = ({ item }) => {
+        const { iconName, notTitle, description, sizeIcon } = item;
         return (
             <TouchableOpacity>
                 <View style={styles.cardNot}>
-                    <View style={[styles.iconNotContainer, {borderColor: item.color, backgroundColor: item.color}]} >
-                        <Ionicons style={styles.imageIcon} name={iconName} size={sizeIcon} color="black"/>
+                    <View style={[styles.iconNotContainer, { borderColor: item.color, backgroundColor: item.color }]} >
+                        <Ionicons style={styles.imageIcon} name={iconName} size={sizeIcon} color="black" />
                     </View>
                     <View style={styles.itemNote}>
-                        <Text style={{color: COLOR.mainColor, fontSize: 18, fontWeight: '700', marginBottom: 5}}>{notTitle}</Text>
-                        <Text style={{color: 'black', fontSize: 15, fontWeight: '300'}}>{description}</Text>
+                        <Text style={{ color: COLOR.mainColor, fontSize: 18, fontWeight: '700', marginBottom: 5 }}>{notTitle}</Text>
+                        <Text style={{ color: 'black', fontSize: 15, fontWeight: '300' }}>{description}</Text>
                     </View>
                 </View>
             </TouchableOpacity>
@@ -39,7 +39,7 @@ const Notifications = () => {
     }
     return (
         <>
-            <StatusBar barStyle='light-content'/>
+            <StatusBar barStyle='light-content' />
             <View style={styles.notificationContainer}>
                 <Text style={styles.titleNot}>Notification</Text>
                 <ScrollView>

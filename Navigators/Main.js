@@ -73,22 +73,22 @@ export default function Main() {
           )
         }}
       />
-        <Tab.Screen
-            name="Setting"
-            component={CartNavigator}
-            options={{
-                tabBarIcon: ({ color }) => (
-                    <View>
-                        <Icon
-                            name="bars"
-                            style={{ position: 'relative' }}
-                            color={color}
-                            size={25}
-                        />
-                    </View>
-                )
-            }}
-        />
+      <Tab.Screen
+        name="Setting"
+        component={CartNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <View>
+              <Icon
+                name="gear"
+                style={{ position: 'relative' }}
+                color={color}
+                size={25}
+              />
+            </View>
+          )
+        }}
+      />
     </Tab.Navigator>
   )
 }

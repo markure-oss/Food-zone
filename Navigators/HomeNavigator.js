@@ -9,8 +9,7 @@ import SingleProduct from '../screens/product/SingleProduct';
 // import Landing from '../screens/User/Landing'
 // import Login from '../screens/User/Login'
 import CartScreen from '../screens/Cart/CartScreen'
-import messageScreen from "../screens/MessageScreen";
-
+import MessageScreen from "../screens/MessageScreen";
 const Stack = createNativeStackNavigator();
 
 function HomeNavigation() {
@@ -19,13 +18,14 @@ function HomeNavigation() {
       <Stack.Screen name="ProductContainer" component={ProductContainer} />
       <Stack.Screen name="CartScreen" component={CartScreen} />
 
+
       {/* <Stack.Screen name="Slides" component={Slides} />
       <Stack.Screen name="Landing" component={Landing} />
       <Stack.Screen name="Login" component={Login} /> */}
 
       <Stack.Screen name="Product Detail" component={SingleProduct} />
 
-      <Stack.Screen name="MessageScreen" component={messageScreen} />
+      <Stack.Screen name="MessageScreen" component={MessageScreen} />
     </Stack.Navigator>
   )
 }
