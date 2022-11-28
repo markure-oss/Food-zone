@@ -2,35 +2,35 @@
   "_id": {
     "$oid": "5f15d5cdcb4a6642bddc0fe9e"
   },
-  "name": "Đồ uống",
+  "name": "food-1",
   "__v": 0,
   "imgUrl": "https://cdn-icons-png.flaticon.com/512/312/312698.png"
 },{
   "_id": {
     "$oid": "5f15d545f3a046427a1c26e2"
   },
-  "name": "Đồ chay",
+  "name": "food-2",
   "__v": 0,
   "imgUrl": "https://cdn-icons-png.flaticon.com/128/6069/6069153.png"
 },{
   "_id": {
     "$oid": "5f15d54cf3a046427a1c26e3"
   },
-  "name": "Bánh Kem",
+  "name": "food-3",
   "__v": 0,
   "imgUrl": "https://cdn-icons-png.flaticon.com/128/312/312708.png"
 },{
   "_id": {
     "$oid": "5f15d5b2cb4a6642bddc0fe7"
   },
-  "name": "Món gà",
+  "name": "food-4",
   "__v": 0,
   "imgUrl": "https://cdn-icons-png.flaticon.com/128/7316/7316240.png"
 }, {
   "_id": {
     "$oid": "5f15d5b7cb4a6642bddc0fe8"
   },
-  "name": "Món lẩu",
+  "name": "food-5",
   "__v": 0,
   "imgUrl": "https://cdn-icons-png.flaticon.com/512/6069/6069104.png"
 },
@@ -38,7 +38,7 @@
   "_id": {
     "$oid": "5f15d5cdcb4a6642bddc0fe9"
   },
-  "name": "Bún Phở",
+  "name": "food-6",
   "__v": 0,
   "imgUrl": "https://cdn-icons-png.flaticon.com/128/1046/1046893.png"
 }]

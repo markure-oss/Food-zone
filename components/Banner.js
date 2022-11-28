@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: COLOR.mainColor,
+        paddingHorizontal: 10
     },
     swiper: {
         width: width,
@@ -59,11 +60,11 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
     imageBanner: {
-        height: width / 1.6,
-        width: '100%',
-        borderRadius: 10,
+        height: width / 1.3,
+        width: '95%',
+        opacity: 0.6,
+        // marginHorizontal: 15
         // marginHorizontal: 20,
-
     },
 });
 

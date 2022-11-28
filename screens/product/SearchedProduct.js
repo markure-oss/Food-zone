@@ -36,16 +36,16 @@ const SearchedProduct = (props) => {
                     <View>
                         <Text style={{
                             marginLeft: 100,
-                            color: '#fff',
+                            color: 'orange',
                             fontSize: 18,
-                            fontWeight: '600',
+                            fontWeight: '800',
                             marginBottom: 5
                         }}>{item.name}</Text>
                         <Text style={{
                             marginLeft: 100,
                             color: '#fff',
                             fontSize: 15,
-                            fontWeight: '300'
+                            fontWeight: '200'
                         }}>{item.description}</Text>
                     </View>
                 </View>

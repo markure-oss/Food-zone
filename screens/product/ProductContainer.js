@@ -21,6 +21,7 @@ import searchedProduct from "./SearchedProduct";
 
 // Icon Import
 import { Foundation, Ionicons, Entypo } from "@expo/vector-icons";
+import { FontAwesome5 } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome'
 
@@ -33,9 +34,12 @@ import CategoryFilter from "./Category/CategoryFilter";
 import baseUrl from "../../common/baseUrl";
 import axios from "axios";
 import { COLOR } from "../../assets/font/color";
+import {LinearGradient} from "expo-linear-gradient";
+import {Button} from "react-native-paper";
 
 const data = require('../../assets/data/products.json');
 const productCategories = require('../../assets/data/categories.json');
+const flatSale = require('../../assets/data/FlatSale.json');
 
 
 const ProductContainer = (props) => {
@@ -97,6 +101,50 @@ const ProductContainer = (props) => {
     };
 
 
+    //flat Sale product
+    const renderFlatSale = ({item}) => {
+        const { image, datetime, voucher } = item;
+        return (
+            <TouchableOpacity style={{flex: 1}} onPress={() => console.log('FlatSale')}>
+                <View style={styles.flatProductContainer}>
+                    <Image style={styles.image}
+                           resizeMode={"cover"}
+                           source={{ uri: image ? image : 'https://images.unsplash.com/photo-1484980972926-edee96e0960d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjh8fGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60' }}
+                    />
+                    <View/>
+                </View>
+                <View style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    marginLeft: 20,
+                    marginTop: 3
+                }}>
+                    <FontAwesome5 name="clock" size={18} color="gray" />
+                    <Text style={{
+                        marginLeft: 5,
+                        color: 'gray',
+                        fontSize: 13,
+                        fontWeight: 'bold'
+                    }}>
+                        {datetime}
+                    </Text>
+
+
+                    <Foundation style={{marginLeft: 18}} name="page-multiple" size={18} color="gray" />
+                    <Text style={{
+                        marginLeft: 5,
+                        color: 'gray',
+                        fontSize: 13,
+                        fontWeight: 'bold'
+                    }}>
+                        {voucher}
+                    </Text>
+                </View>
+            </TouchableOpacity>
+        )
+    }
+
+
 
 
     return (
@@ -135,18 +183,12 @@ const ProductContainer = (props) => {
                             />
                             <CartIcon />
                         </TouchableOpacity>
-
-                        <Image
-                            source={require('../../assets/images/avatar.png')}
-                            style={styles.avatarIcon}
-                        />
+                        <TouchableOpacity>
+                            <AntDesign onPress={() => props.navigation.navigate('MessageScreen')} style={styles.avatarIcon} name="message1" size={23} color="white" />
+                        </TouchableOpacity>
                     </View>
                     <View style={styles.lowerHeader} />
                 </SafeAreaView>
-                {/* <ScrollView> Xoa het dong nay
-                    <View style={styles.paddingForHeader} />
-                    <View style={styles.scrollViewContent} />
-                </ScrollView> */}
             </View>
             {focus == true ? (
                 <SearchedProduct
@@ -154,7 +196,7 @@ const ProductContainer = (props) => {
                 />
             ) : (
                 <ScrollView style={styles.productMain}>
-                    <View>
+                    <View style={{marginTop: -20}}>
                         <View style={styles.productHome}>
                             <Banner />
                         </View>
@@ -167,6 +209,51 @@ const ProductContainer = (props) => {
                                 setActive={setActive}
                             />
                         </View>
+
+                        {/*flat Sale product*/}
+                        <SafeAreaView style={{heigh: 200}}>
+                            <View style={styles.flatSaleContainer}>
+                                <LinearGradient colors={['rgba(232, 192, 61, 1)', 'rgba(190, 100, 109, 1)']}
+                                                style={[ styles.contentCard ,{ marginLeft: -20}]}
+                                                end={{ x: 1, y: 0.5 }}
+                                >
+                                    <Text style={{ fontSize: 15, color: 'white' }}>Flat Sale</Text>
+                                </LinearGradient>
+                                <TouchableOpacity>
+                                    <Text
+                                        //see more
+                                        // onPress={}
+                                        style={[
+                                            styles.contentCard, {
+                                            fontSize: 15,
+                                            color: 'gray',
+                                            marginRight: -35,
+                                            textDecorationLine: 'underline'
+                                        }]}>
+                                        see more
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={{
+                                flex: 1,
+                            }}>
+                                <FlatList
+                                    style={{flex: 1}}
+                                    data={flatSale}
+                                    renderItem={renderFlatSale}
+                                    horizontal={true}
+                                    keyExtractor={item => `${item.id}`}
+                                    showsHorizontalScrollIndicator={false}
+                                />
+                            </View>
+                        </SafeAreaView>
+
+                        <LinearGradient colors={['rgba(232, 192, 61, 1)', 'rgba(190, 100, 109, 1)']}
+                                        style={styles.contentCard}
+                                        end={{ x: 1, y: 0.5 }}
+                        >
+                            <Text style={{ fontSize: 15, color: 'white' }}>Popular</Text>
+                        </LinearGradient>
                         {productCtg.length > 0 ? (
                             <View style={styles.listContainer}>
                                 {productCtg.map((item, index) => {
@@ -196,23 +283,37 @@ const ProductContainer = (props) => {
 export default ProductContainer;
 
 const styles = StyleSheet.create({
+    contentCard: {
+        padding: 10,
+        paddingHorizontal: 15,
+        borderRadius: 10,
+        width: 100,
+        textAlign: 'center',
+        alignItems: "center",
+        marginLeft: 10,
+        marginTop: 20,
+        marginBottom: 5
+    },
     bigContainer: {
         flex: 1
     },
     container: {
-        // flex: 1, Xoa
-        // marginBottom: 150, Xoa
         marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-        backgroundColor: COLOR.mainColor
+        backgroundColor: COLOR.mainColor,
+        // height: 400
     },
     listContainer: {
-        // height: height, Xoa
         flex: 1,
         flexDirection: "row",
         flexWrap: "wrap",
     },
+    flatSaleContainer: {
+        justifyContent: 'space-between',
+        marginHorizontal: 30,
+        flexDirection: 'row',
+        marginBottom: 20
+    },
     errorCtg: {
-        // justifyContent: 'center',
         padding: 80,
         alignItems: 'center',
         color: 'black',
@@ -257,18 +358,14 @@ const styles = StyleSheet.create({
         marginLeft: 8
     },
     cartIcon: {
-        // width: 18,
-        // height: 20,
-        // alignItems: 'center',
-        // height: '100%',
-        // marginHorizontal: 32,
         marginHorizontal: 20,
         color: 'white'
     },
     avatarIcon: {
         marginLeft: 10,
         width: 35,
-        height: 35
+        height: 35,
+        marginTop: 10
     },
     searchContainer: {
         flex: 1,
@@ -281,7 +378,6 @@ const styles = StyleSheet.create({
         color: 'white',
         borderRadius: 10,
         padding: 10,
-        // paddingVertical: 4,
         paddingLeft: 32
     },
     closeIcon: {
@@ -290,5 +386,17 @@ const styles = StyleSheet.create({
     },
     productMain: {
         backgroundColor: COLOR.mainColor,
+    },
+    image: {
+        width: 180,
+        height: 250,
+        top: 5,
+        marginBottom: -150,
+        borderRadius: 20,
+        marginHorizontal: 1
+    },
+    flatProductContainer: {
+        height: 260,
+        marginLeft: 10
     }
 });

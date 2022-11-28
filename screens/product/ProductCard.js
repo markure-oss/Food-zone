@@ -52,9 +52,10 @@ const ProductCard = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 35,
+        marginTop: 25,
         marginBottom: -55,
         marginLeft: 10,
+        marginHorizontal: 10,
         alignItems: 'center',
         height: '100%'
         // elevation: 8,
@@ -90,11 +91,11 @@ const styles = StyleSheet.create({
         color: '#fff',
     },
     price: {
-        fontSize: 18,
+        fontSize: 15,
         marginTop: 10,
-        color: '#fff',
+        color: '#ccc',
         marginRight: 10,
-        fontWeight: '600'
+        fontWeight: '300'
     }
 })
 

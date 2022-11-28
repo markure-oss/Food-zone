@@ -11,6 +11,9 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 // NavigatorStack
 import HomeNavigation from './HomeNavigator'
 import CartNavigator from './CartNavigator'
+import Notifications from "../screens/Notifications";
+import Profile from "../screens/Profile";
+
 
 
 const Tab = createMaterialBottomTabNavigator()
@@ -43,24 +46,8 @@ export default function Main() {
         }}
       />
       <Tab.Screen
-        name="Cart"
-        component={CartNavigator}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <View>
-              <Icon
-                name="bars"
-                style={{ position: 'relative' }}
-                color={color}
-                size={25}
-              />
-            </View>
-          )
-        }}
-      />
-      <Tab.Screen
         name="Notifications"
-        component={HomeNavigation}
+        component={Notifications}
         options={{
           tabBarIcon: ({ color }) => (
             <Icon
@@ -74,7 +61,7 @@ export default function Main() {
       />
       <Tab.Screen
         name="Profile"
-        component={HomeNavigation}
+        component={Profile}
         options={{
           tabBarIcon: ({ color }) => (
             <Icon
@@ -86,6 +73,22 @@ export default function Main() {
           )
         }}
       />
+        <Tab.Screen
+            name="Setting"
+            component={CartNavigator}
+            options={{
+                tabBarIcon: ({ color }) => (
+                    <View>
+                        <Icon
+                            name="bars"
+                            style={{ position: 'relative' }}
+                            color={color}
+                            size={25}
+                        />
+                    </View>
+                )
+            }}
+        />
     </Tab.Navigator>
   )
 }

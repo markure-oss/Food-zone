@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, ScrollView, FlatList, TouchableOpacity, Image } from "react-native";
-import CategoryCardFilter from "./CategoryCardFilter";
 const categoryProducts = require('../../../assets/data/categories.json');
-import CategoriesList from './CategoriesList';
 
 import { COLOR } from "../../../assets/font/color";
 
