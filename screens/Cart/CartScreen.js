@@ -110,9 +110,10 @@ const styles = StyleSheet.create({
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0
   },
   title: {
-    fontSize: 25,
+    fontSize: 20,
     color: 'white',
-    fontWeight: 'bold'
+    fontWeight: '600',
+    marginTop: -8
   },
   wallet: {
     width: '90%',
