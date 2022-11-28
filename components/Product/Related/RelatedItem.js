@@ -10,7 +10,8 @@ function RelatedItem({ itemRelate }) {
     <TouchableOpacity
       style={styles.container}
       onPress={() =>
-        navigation.navigate("Product Detail", { item: itemRelate })
+        console.log("click related food")
+        // navigation.navigate("Product Detail", { item: itemRelate })
       }
     >
       <Image
@@ -24,7 +25,7 @@ function RelatedItem({ itemRelate }) {
           <FontAwesome name="star" size={14} color="#FDCC0D" />
         </View>
       </View>
-    </TouchableOpacity>
+    </TouchableOpacity >
   )
 }
 export default RelatedItem
