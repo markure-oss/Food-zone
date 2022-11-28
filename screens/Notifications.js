@@ -13,20 +13,21 @@ import {
 import React from 'react'
 import {COLOR} from "../assets/font/color";
 
-import {Entypo} from '@expo/vector-icons';
+import {Entypo, Ionicons} from '@expo/vector-icons';
 
 const Notification = require('../assets/data/notification.json');
 
 let {height} = Dimensions.get("window")
 
+
 const Notifications = () => {
     const renderNotification = ({item}) => {
-        const {icon, notTitle, description} = item;
+        const {iconName, notTitle, description, sizeIcon} = item;
         return (
             <TouchableOpacity>
                 <View style={styles.cardNot}>
-                    <View style={styles.iconNotContainer} >
-                        <Image style={styles.imageIcon} source={require('../assets/images/icons8-error-48.png')} />
+                    <View style={[styles.iconNotContainer, {borderColor: item.color, backgroundColor: item.color}]} >
+                        <Ionicons style={styles.imageIcon} name={iconName} size={sizeIcon} color="black"/>
                     </View>
                     <View style={styles.itemNote}>
                         <Text style={{color: COLOR.mainColor, fontSize: 18, fontWeight: '700', marginBottom: 5}}>{notTitle}</Text>
@@ -44,14 +45,12 @@ const Notifications = () => {
                 <ScrollView>
                     <FlatList
                         style={{
-                            backgroundColor: '#fff',
+                            backgroundColor: COLOR.mainColor,
                             height,
                         }}
                         data={Notification}
                         renderItem={renderNotification}
                         keyExtractor={item => `${item._id.$oid}`}
-                        // horizontal={false}
-                        // showsHorizontalScrollIndicator={false}
                     />
                 </ScrollView>
             </View>
@@ -72,20 +71,20 @@ const styles = StyleSheet.create({
     titleNot: {
         color: '#fff',
         fontSize: 20,
-        marginTop: 60,
+        marginTop: 40,
         fontWeight: '800',
-        marginBottom: 50
+        marginBottom: 30
     },
     cardNot: {
         borderWidth: 1,
         borderColor: '#fff',
         height: 100,
-        width: 350,
+        width: 360,
         paddingVertical: 20,
         paddingHorizontal: 3,
         textAlign: "center",
         marginVertical: 10,
-        marginHorizontal: 20,
+        marginHorizontal: 10,
         flexDirection: 'row',
         backgroundColor: '#fff',
         //box-shadow
@@ -102,25 +101,26 @@ const styles = StyleSheet.create({
     },
     iconNotContainer: {
         borderWidth: 1,
-        borderColor: 'orange',
         borderRadius: 60,
         height: 40,
         width: 40,
-        backgroundColor: 'orange',
-        alignItems: "center"
+        alignItems: "center",
+        paddingTop: 5,
+        paddingLeft: 8,
+        marginVertical: 7
     },
     iconNot: {
         marginVertical: 5
     },
     itemNote: {
-        // marginLeft: 20,
         marginHorizontal: 15
     },
     imageIcon: {
-        backgroundColor: 'orange',
-        height: 35,
-        width: 35,
+        backgroundColor: 'fff',
+        height: 32,
+        width: 32,
         resizeMode: "cover",
-        borderRadius: 50
+        borderRadius: 50,
+        color: '#fff',
     }
 })

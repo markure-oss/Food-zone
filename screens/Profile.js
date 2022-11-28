@@ -1,90 +1,154 @@
-import { View, Text, StyleSheet, Platform, StatusBar, Image, TouchableOpacity } from 'react-native'
+import {
+  View,
+  Text,
+  StyleSheet,
+  Platform,
+  StatusBar,
+  Image,
+  TouchableOpacity,
+  Dimensions,
+  ScrollView
+} from 'react-native'
 import React from 'react'
-import Footer, { currentPage } from "../components/Footer"
-import { Ionicons, Fontisto } from '@expo/vector-icons'
-import { COLOR } from '../assets/font/color'
+import Footer, {currentPage} from "../components/Footer"
+import {Ionicons, Feather} from '@expo/vector-icons'
+import {COLOR} from '../assets/font/color'
+
+let {height} = Dimensions.get("window")
+
 const listButton = [
+    {
+        id: 1,
+        name: "Hung Pham",
+        iconName: "ios-person-outline",
+        sizeIcon: 24
+    },
+    {
+        id: 2,
+        name: "ptuanhungg@gmail.com",
+        iconName: "chatbox-ellipses-outline",
+        sizeIcon: 24
+    },
+    {
+        id: 3,
+        name: "********",
+        iconName: "lock-closed-outline",
+        sizeIcon: 24
+    },
+    {
+        id: 4,
+        name: "Hanoi, VietNam",
+        iconName: "home-outline",
+        sizeIcon: 24
+    },
+    {
+        id: 5,
+        name: "Support",
+        iconName: "bulb-outline",
+        sizeIcon: 24
+    },
   {
-    id: 1,
-    name: "Profile",
-    iconName: "ios-person-outline",
-    sizeIcon: 24
-  },
-  {
-    id: 2,
-    name: "Category",
-    iconName: "fast-food-outline",
-    sizeIcon: 24
-  },
-  {
-    id: 3,
-    name: "Notifications",
-    iconName: "notifications-outline",
-    sizeIcon: 24
-  },
-  {
-    id: 4,
-    name: "Security",
-    iconName: "lock-closed-outline",
-    sizeIcon: 24
-  },
-  {
-    id: 5,
-    name: "Setting",
+    id: 6,
+    name: "Log Out",
     iconName: "settings-outline",
     sizeIcon: 24
-  },
+  }
 ]
 export default function Profile() {
-  return (
-    <View>
-      <Image
-        style={{ height: 300 }}
-        source={require("../assets/images/5870151cee14b617038b7150..png")}
-      />
-      <View style={{ position: 'absolute', flexDirection: 'row', top: 150, left: 30 }}>
-        <Image
-          style={{ width: 120, height: 120, borderRadius: 60 }}
-          source={require("../assets/images/hamberger-slide.jpg")}
-        />
-        <View style={{ justifyContent: 'center', padding: 20 }}>
-          <Text style={{ fontSize: 20, color: 'white', fontWeight: 'bold' }}>David Oscar</Text>
-          <Text style={{ fontSize: 17, color: 'white', opacity: 0.8 }}>david@gmail.com</Text>
-        </View>
-      </View>
-      <View >
-        {
-          listButton.map((button) => {
-            return (
-              <TouchableOpacity key={button.id}
-                style={styles.button}>
-                <View style={{
-                  flexDirection: 'row', alignItems: 'center',
-                }}>
-                  <Ionicons name={button.iconName} size={button.sizeIcon} color="white" />
-                  <Text style={{ fontSize: 17, marginLeft: 10, color: "white" }}>{button.name}</Text>
+    return (
+        <>
+          <StatusBar barStyle='dark-content' />
+          <View style={styles.profileContainer}>
+            <Text style={styles.titleProfile}>Profile</Text>
+            <View style={styles.profileCard}>
+                <View style={styles.borderAvatar}>
+                    <Image
+                        style={styles.avatar}
+                        source={require("../assets/images/profile.jpg")}
+                    />
                 </View>
-                <View>
-                  <Fontisto name="angle-right" size={15} color="white" />
-                </View>
-              </TouchableOpacity>
-            )
-          })
-        }
-      </View>
-    </View>
-  )
+              <View style={{justifyContent: 'center', padding: 20}}>
+                <Text style={{fontSize: 20, color: '#fff', fontWeight: 'bold'}}>Hung Pham</Text>
+              </View>
+            </View>
+              <View style={{height: height}}>
+                {
+                  listButton.map((button) => {
+                    return (
+                        <TouchableOpacity key={button.id}
+                                          style={styles.cardItem}>
+                          <View style={{
+                            flexDirection: 'row', alignItems: 'center',
+                          }}>
+                            <Ionicons name={button.iconName} size={button.sizeIcon} color="black"/>
+                            <Text style={{fontSize: 17, marginLeft: 10, color: COLOR.mainColor}}>{button.name}</Text>
+                          </View>
+                          <View>
+                            <Feather name="edit" size={20} color="black" />
+                          </View>
+                        </TouchableOpacity>
+                    )
+                  })
+                }
+              </View>
+          </View>
+        </>
+    )
 }
 
 
 const styles = StyleSheet.create({
-  button: {
-    width: '100%',
+  cardItem: {
+    width: 360,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 20,
-    borderBottomWidth: 0.3,
-    borderColor: "#ccc"
+    padding: 17,
+    borderWidth: 0.3,
+    borderColor: "#ccc",
+    backgroundColor: '#fff',
+    marginVertical: 10,
+    marginHorizontal: 5,
+    borderRadius: 10,
+
+    //box shadow
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+
+    elevation: 7,
+    },
+    profileCard: {
+      top: -35,
+      alignItems: "center",
+      marginBottom: -30
+    },
+    avatar: {
+        width: '100%',
+        height: '100%',
+        borderRadius: 60,
+    },
+    profileContainer: {
+        backgroundColor: COLOR.mainColor,
+        // height,
+        alignItems: "center",
+    },
+  titleProfile: {
+    color: '#fff',
+    fontSize: 20,
+    marginTop: 40,
+    fontWeight: '800',
+    marginBottom: 50
   },
+    borderAvatar: {
+      borderColor: 'orange',
+        borderWidth: 3,
+        borderRadius: 60,
+        height: 100,
+        width: 100
+    }
 })

@@ -150,7 +150,7 @@ const ProductContainer = (props) => {
     return (
         <>
             <View style={styles.container}>
-                <StatusBar barStyle={"light-content"} />
+                <StatusBar barStyle="light-content" />
                 <SafeAreaView>
                     <View style={styles.upperHeaderPlaceholder} />
                 </SafeAreaView>
