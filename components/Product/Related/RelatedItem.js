@@ -1,18 +1,25 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
-import React, { memo } from 'react'
+import React, { memo, useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
 // icon
 import { FontAwesome } from '@expo/vector-icons';
-
+import { useSelector, useDispatch } from 'react-redux'
+import { pageSelector } from '../../../redux/selector'
+import { changeNav } from '../../../redux/slices/changeNav'
+// redux
 function RelatedItem({ itemRelate }) {
   const navigation = useNavigation()
+  const dispatch = useDispatch()
+  const _itemPage = useSelector(pageSelector)
+  const [item, setItem] = useState(itemRelate.item)
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() =>
-        console.log("click related food")
-        // navigation.navigate("Product Detail", { item: itemRelate })
-      }
+      onPress={() => {
+        _itemPage ? navigation.navigate("Single Product", { item: item })
+          : navigation.navigate("Product Detail", { item: item })
+        dispatch(changeNav.actions.changePage())
+      }}
     >
       <Image
         source={{ uri: itemRelate.item.image ? itemRelate.item.image : 'https://www.shoshinsha-design.com/wp-content/uploads/2020/05/noimage_icon-1.png' }}

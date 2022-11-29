@@ -12,6 +12,7 @@ import { useDispatch } from 'react-redux'
 import { cartSlice } from '../../redux/slices/cartSlice'
 
 // icon
+import Icon from 'react-native-vector-icons/FontAwesome'
 import { FontAwesome, AntDesign, Ionicons } from '@expo/vector-icons';
 
 // component
@@ -19,6 +20,8 @@ import Gallery from '../../components/Product/Gallery';
 import OptionButton from '../../components/Product/OptionButton'
 import Reviews from '../../components/Product/Reviews'
 import Related from '../../components/Product/Related';
+import CartIcon from '../../components/Cart/CartIcon'
+
 
 export default function SingleProduct(props) {
   const dispatch = useDispatch()
@@ -38,12 +41,41 @@ export default function SingleProduct(props) {
           style={styles.image}
         >
           <LinearGradient colors={['rgba(0, 0, 0, 0.2)', 'rgba(0, 0, 0, 0.7)']} style={{ flex: 1 }}>
-            <TouchableOpacity
-              style={{ position: 'absolute', top: 40, left: 20 }}
-              onPress={() => props.navigation.goBack()}
-            >
-              <AntDesign name="arrowleft" size={30} color="white" />
-            </TouchableOpacity>
+            <View style={styles.boxTab}>
+              <TouchableOpacity
+                // style={{ position: 'absolute', top: 40, left: 20 }}
+                onPress={() => props.navigation.goBack()}
+              >
+                <AntDesign name="arrowleft" size={30} color="white" />
+              </TouchableOpacity>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <TouchableOpacity
+                  style={{ height: '100%', justifyContent: 'center', marginRight: 30 }}
+                // onPress={() => }
+                >
+                  <Icon
+                    name="shopping-cart"
+                    size={25}
+                    color="white"
+                  />
+                  <View style={{ position: "absolute", top: -5, right: -20 }}>
+                    <CartIcon />
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{ height: '100%', justifyContent: 'center', }}
+                  onPress={() => props.navigation.navigate("CartScreen")}
+                >
+                  <Icon
+                    name="ellipsis-v"
+                    size={27}
+                    color="white"
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
+
+
           </LinearGradient>
         </ImageBackground>
       </View>
@@ -158,5 +190,14 @@ const styles = StyleSheet.create({
   zoomButton: {
     padding: 8,
     backgroundColor: '#bdbdbd',
-  }
+  },
+  boxTab: {
+    position: 'absolute',
+    top: 40, width: '100%',
+    // backgroundColor: 'red',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingLeft: 20,
+    paddingRight: 35,
+  },
 })

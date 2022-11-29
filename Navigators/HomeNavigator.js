@@ -17,14 +17,8 @@ function HomeNavigation() {
     <Stack.Navigator initialRouteName='ProductContainer' screenOptions={{ headerShown: false }}>
       <Stack.Screen name="ProductContainer" component={ProductContainer} />
       <Stack.Screen name="CartScreen" component={CartScreen} />
-
-
-      {/* <Stack.Screen name="Slides" component={Slides} />
-      <Stack.Screen name="Landing" component={Landing} />
-      <Stack.Screen name="Login" component={Login} /> */}
-
       <Stack.Screen name="Product Detail" component={SingleProduct} />
-
+      <Stack.Screen name="Single Product" component={SingleProduct} />
       <Stack.Screen name="MessageScreen" component={MessageScreen} />
     </Stack.Navigator>
   )
@@ -33,5 +27,3 @@ function HomeNavigation() {
 export default function MyStack() {
   return <HomeNavigation />
 }
-
-const styles = StyleSheet.create({})

@@ -63,7 +63,7 @@ const MessageScreen = () => {
                         {
                             listMessages.map((messages) => {
                                 return (
-                                    <TouchableOpacity style={styles.messagesCard}>
+                                    <TouchableOpacity key={messages._id} style={styles.messagesCard}>
                                         <View style={styles.ContentCard}>
                                             <View style={styles.imageCard}>
                                                 <Image style={styles.avatarImage} source={{ uri: messages.avatar }} />
@@ -105,7 +105,6 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.29,
         shadowRadius: 4.65,
-
         elevation: 7,
     },
     ContentCard: {
