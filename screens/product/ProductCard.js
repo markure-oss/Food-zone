@@ -16,7 +16,7 @@ import { cartSlice } from '../../redux/slices/cartSlice'
 let { width } = Dimensions.get("window");
 
 const ProductCard = (props) => {
-    const { image, name, price, countInStock } = props;
+    const { image, name, price, countInStock = 10 } = props;
     const items = props
     const dispatch = useDispatch()
     const handleClickAdd = (item) => {
@@ -37,7 +37,7 @@ const ProductCard = (props) => {
                         }
                     </Text>
                     <View style={styles.cardItem}>
-                        <Text style={styles.price}>$ {price}</Text>
+                        <Text style={styles.price}>${price.toFixed(1)}</Text>
                         {countInStock > 0 ? (
                             <View style={{ marginBottom: 60 }}>
                                 <Button buttonColor='orange' mode="contained" onPress={() => handleClickAdd(items)} > Add</Button>

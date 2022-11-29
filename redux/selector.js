@@ -1,7 +1,7 @@
 export const pageSelector = (state) => state.navigation.pageCurrent
 
 export const selectCartItemsWithID = (state, id) => {
-  const item = state.cart.cartItems.find(item => item._id.$oid === id)
+  const item = state.cart.cartItems.find(item => item._id === id)
   return item.quantity
 }
 

@@ -6,7 +6,6 @@ import { COLOR } from "../../../assets/font/color";
 
 const CategoryFilter = (props) => {
     return (
-
         <ScrollView
             bounces={true}
             horizontal
@@ -38,9 +37,9 @@ const CategoryFilter = (props) => {
 
                 {props.categories.map((item) => (
                     <TouchableOpacity
-                        key={item._id.$oid}
+                        key={item._id}
                         onPress={() => {
-                            props.categoryFilter(item._id.$oid),
+                            props.categoryFilter(item._id),
                                 props.setActive(props.categories.indexOf(item))
                         }}
                     >
@@ -48,7 +47,7 @@ const CategoryFilter = (props) => {
                             styles.allCtg,
                             props.active == props.categories.indexOf(item) ? styles.Active : styles.inActive
                         ]}>
-                            <Image style={styles.categoryItem} source={{ uri: item.imgUrl }} />
+                            <Image style={styles.categoryItem} source={{ uri: item.icon }} />
                             <Text style={styles.title}>{item.name}</Text>
                         </View>
                     </TouchableOpacity>

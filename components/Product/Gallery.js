@@ -1,19 +1,27 @@
 import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import gallery from '../../assets/data/gallery.json'
+// import gallery from '../../assets/data/gallery.json'
 
-
-
-export default function Gallery() {
+// data
+import baseUrl from '../../common/baseUrl'
+import axios from 'axios'
+export default function Gallery({ _id }) {
   const [length, setLength] = useState(3)
+  const [gallery, setGallery] = useState([])
+  useEffect(() => {
+    axios
+      .get(`${baseUrl}dishes/${_id}`)
+      .then((res) => res.data)
+      .then((data) => setGallery(data.images))
+      .catch((err) => console.log("Error API"))
+  }, [_id])
   const galleryDisplay = []
   for (let i = 0; i < length; i++) {
     galleryDisplay.push(gallery[i])
   }
   let lengthGallery = galleryDisplay.length
-  const imageOfGallery = ({ item }) => {
+  const imageOfGallery = ({ index }) => {
     lengthGallery -= 1
-    const { imgUrl } = item
     return (
       <>
         <View style={{
@@ -27,7 +35,7 @@ export default function Gallery() {
           <Image
             resizeMode="cover"
             style={{ backgroundColor: '#ccc', flex: 1, borderRadius: 10 }}
-            source={{ uri: imgUrl ? imgUrl : 'https://images.unsplash.com/photo-1484980972926-edee96e0960d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjh8fGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60' }}
+            source={{ uri: galleryDisplay[index] ? galleryDisplay[index] : 'https://images.unsplash.com/photo-1484980972926-edee96e0960d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjh8fGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60' }}
           />
         </View>
         {
@@ -57,7 +65,7 @@ export default function Gallery() {
         renderItem={imageOfGallery}
         horizontal={true}
         // keyExtractor={item => `${item.id}`}
-        keyExtractor={item => `${item._id.$oid}`}
+        keyExtractor={(item, index) => index}
         showsHorizontalScrollIndicator={false}
       />
     </View>

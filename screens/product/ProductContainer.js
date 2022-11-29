@@ -53,13 +53,32 @@ const ProductContainer = (props) => {
     const [initialState, setInitialState] = useState([]);
 
     useEffect(() => {
-        setProducts(data);
-        setProductFiltered(data);
-        setFocus(false);
-        setCategories(productCategories);
-        setProductCtg(data);
-        setActive(-1);
-        setInitialState(data);
+
+        axios.get(`${baseUrl}categories`)
+            .then((res) => {
+                setCategories(res.data)
+                // console.log(res.data)
+            })
+            .catch((err) => console.log(err))
+
+        axios.get(`${baseUrl}dishes`)
+            .then((res) => {
+                setProducts(res.data);
+                setProductFiltered(res.data);
+                setFocus(false);
+                // setCategories(productCategories);
+                setProductCtg(res.data);
+                setActive(-1);
+                setInitialState(res.data);
+            })
+            .catch((err) => console.log(err))
+        // setProducts(data);
+        // setProductFiltered(data);
+        // setFocus(false);
+        // // setCategories(productCategories);
+        // setProductCtg(data);
+        // setActive(-1);
+        // setInitialState(data);
 
         return (() => {
             setProducts([]);
@@ -93,7 +112,7 @@ const ProductContainer = (props) => {
                 ? [setProductCtg(initialState), setActive(true)]
                 : [
                     setProductCtg(
-                        products.filter((i) => i.category.$oid === ctg),
+                        products.filter((i) => i.category._id === ctg),
                         setActive(true)
                     ),
                 ];
@@ -261,7 +280,7 @@ const ProductContainer = (props) => {
                                     return (
                                         <ProductList
                                             navigation={props.navigation}
-                                            key={item._id.$oid}
+                                            key={item._id}
                                             item={item}
                                         />
                                     )

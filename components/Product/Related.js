@@ -1,13 +1,27 @@
 import { StyleSheet, Text, View, FlatList } from 'react-native'
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import RelatedItem from './Related/RelatedItem'
+
+import axios from 'axios'
+import baseUrl from '../../common/baseUrl'
 // data
 import products from '../../assets/data/products.json'
+
+
 export default function Related({ item }) {
-  const listRelated = products.filter((product) =>
-    product.category.$oid == item.category.$oid
-    && product.name != item.name
-  )
+  const [listRelated, setListRelated] = useState([])
+  useEffect(() => {
+    axios.get(`${baseUrl}dishes`)
+      .then((res) => res.data)
+      .then((data) => {
+        const _listRelated = data.filter((product) =>
+          product.category._id == item.category._id
+          && product.name != item.name
+        )
+        setListRelated(_listRelated)
+      })
+  }, [])
+
   return (
     listRelated.length != 0 ?
       <View style={styles.container} >
@@ -23,7 +37,7 @@ export default function Related({ item }) {
               <RelatedItem itemRelate={relatedItem} />
             }
             horizontal={true}
-            keyExtractor={relatedItem => `${relatedItem._id.$oid}`}
+            keyExtractor={relatedItem => `${relatedItem._id}`}
             showsHorizontalScrollIndicator={false}
           />
         </View>

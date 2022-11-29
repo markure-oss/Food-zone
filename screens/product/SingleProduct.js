@@ -88,23 +88,14 @@ export default function SingleProduct(props) {
               <FontAwesome name="star" size={14} color="#FDCC0D" />
             </View>
           </View>
-          <Text style={{ color: COLOR.secondaryColor, fontSize: 25, fontWeight: 'bold' }}>${item.price.toFixed(2)}</Text>
+          <Text style={{ color: COLOR.secondaryColor, fontSize: 25, fontWeight: 'bold' }}>${item.price.toFixed(1)}</Text>
         </View>
       </View>
       <OptionButton />
       <View style={{ paddingHorizontal: 20, marginTop: 20 }}>
         <Text style={styles.title}>About</Text>
         <Text style={{ fontSize: 15, color: '#ccc', opacity: 0.5, marginTop: 5, textAlign: 'justify' }}>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias sequi
-          praesentium, sapiente nulla soluta beatae accusantium quo doloremque minus natus
-          distinctio. Molestiae consectetur doloribus tempora voluptate odio recusandae
-          minima sunt eveniet unde? Rem aliquid blanditiis, quasi obcaecati quaerat ipsam
-          vel facilis animi saepe neque odio quae dolorem doloremque! Facilis enim tempora
-          nemo assumenda repellat nesciunt nobis sit tenetur! Perspiciatis consectetur,
-          placeat corrupti cum ea doloribus odio quisquam repellat vitae quod, asperiores
-          dolor corporis mollitia inventore nemo? Fuga ducimus hic cupiditate praesentium
-          delectus iste corporis, impedit laborum perferendis placeat odio qui unde dolor
-          ipsa suscipit nostrum tempore voluptas maiores quis porro!
+          {item.richDescription}
         </Text>
       </View>
       <View style={{ paddingHorizontal: 20, marginTop: 20 }}>
@@ -126,7 +117,7 @@ export default function SingleProduct(props) {
       </View>
       <View style={{ marginTop: 20 }}>
         <Text style={[styles.title, { paddingLeft: 20, }]}>Gallery</Text>
-        <Gallery />
+        <Gallery _id={item._id} />
       </View>
       <Reviews />
       <Related item={item} />
