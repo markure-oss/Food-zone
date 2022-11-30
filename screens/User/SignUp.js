@@ -2,15 +2,52 @@ import { View, Text, ImageBackground, StyleSheet, TouchableOpacity, TextInput } 
 import React, { useState } from 'react'
 import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialIcons, AntDesign, FontAwesome, Ionicons } from '@expo/vector-icons';
+import { COLOR } from '../../assets/font/color'
+import Toast from 'react-native-toast-message'
+// component
+import Error from '../../components/User/Error'
 
-export default function SignUp() {
+export default function SignUp({ navigation }) {
     const [isDisplayPassword, setIsDisplayPassword] = useState(true)
     const handleDisplayPassword = () => {
         setIsDisplayPassword(!isDisplayPassword)
     }
+
+    const [userName, setUserName] = useState('')
+    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
+    const [error, setError] = useState('')
+
+    const handleClickSignUp = () => {
+        const user = {
+            email,
+            password,
+            userName
+        }
+        if (email == '' || password == '' || userName == '') {
+            setError("Please fill in your credentials")
+            Toast.show({
+                topOffset: 60,
+                type: "error",
+                text1: "Something went wrong",
+                text2: "Please try again"
+            })
+        }
+        else {
+            Toast.show({
+                topOffset: 60,
+                type: "success",
+                text1: "Registration Succeeded",
+                text2: "Please login into your account"
+            })
+            setTimeout(() => {
+                navigation.navigate("Login")
+            }, 500)
+        }
+    }
     return (
         <ImageBackground
-            source={require('../assets/images/fathul-abrar-T-qI_MI2EMA-unsplash.jpg')}
+            source={require('../../assets/images/fathul-abrar-T-qI_MI2EMA-unsplash.jpg')}
             resizeMode="cover"
             style={{ flex: 1, justifyContent: 'center' }}
         >
@@ -22,6 +59,13 @@ export default function SignUp() {
                             style={{ width: '100%', color: 'white' }}
                             placeholder="UserName"
                             placeholderTextColor={'#ccc'}
+                            value={userName}
+                            id={"userName"}
+                            name={"userName"}
+                            onChangeText={(text) => {
+                                setUserName(text)
+                                setError('')
+                            }}
                         />
                     </View>
                     <View style={styles.Input}>
@@ -29,6 +73,13 @@ export default function SignUp() {
                             style={{ width: '100%', color: 'white' }}
                             placeholder="Email"
                             placeholderTextColor={'#ccc'}
+                            value={email}
+                            id={"email"}
+                            name={"email"}
+                            onChangeText={(text) => {
+                                setEmail(text)
+                                setError('')
+                            }}
                         />
                     </View>
                     <View style={[styles.Input, { justifyContent: 'space-between' }]}>
@@ -37,6 +88,13 @@ export default function SignUp() {
                             placeholder="Password"
                             placeholderTextColor={'#ccc'}
                             secureTextEntry={isDisplayPassword}
+                            value={password}
+                            name={"password"}
+                            id={"password"}
+                            onChangeText={(text) => {
+                                setPassword(text)
+                                setError('')
+                            }}
                         />
                         <TouchableOpacity
                             style={{ position: 'absolute', right: 20 }}
@@ -63,10 +121,14 @@ export default function SignUp() {
                     {/*        }*/}
                     {/*    </TouchableOpacity>*/}
                     {/*</View>*/}
-                    <TouchableOpacity onPress={() => {'Login'}} style={styles.button}>
+                    {error ? <Error message={error} /> : null}
+                    <TouchableOpacity
+                        onPress={() => handleClickSignUp()}
+                        style={styles.button}
+                    >
                         <LinearGradient colors={['rgba(232, 192, 61, 1)', 'rgba(190, 100, 109, 1)']}
-                                        style={styles.linearColor}
-                                        end={{ x: 1, y: 0.5 }}
+                            style={styles.linearColor}
+                            end={{ x: 1, y: 0.5 }}
                         >
                             <Text style={{ fontSize: 20, color: 'white' }}>SignUp</Text>
                         </LinearGradient>
@@ -83,9 +145,11 @@ export default function SignUp() {
                             height: '100%',
                             alignItems: 'center',
                             marginLeft: 5,
-                        }}>
+                        }}
+                            onPress={() => navigation.navigate("Login")}
+                        >
                             <Text style={{
-                                color: '#FB741D',
+                                color: COLOR.secondaryColor,
                                 fontSize: 18,
                             }}>Sign in</Text>
                         </TouchableOpacity>
@@ -102,8 +166,8 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 20,
         position: 'absolute',
         width: '100%',
-        height: '60%',
-        backgroundColor: '#1E2A3F',
+        height: '70%',
+        backgroundColor: COLOR.mainColor,
         bottom: 0,
         alignItems: 'center',
     },

@@ -29,7 +29,7 @@ export default function Onboarding({ navigation }) {
     if (currentIndex < slides.length - 1) {
       slidesRef.current.scrollToIndex({ index: currentIndex + 1 })
     } else {
-      navigation.navigate("Main")
+      navigation.navigate("UserNavigator")
     }
   }
   return (

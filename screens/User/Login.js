@@ -4,11 +4,32 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialIcons, AntDesign, FontAwesome, Ionicons } from '@expo/vector-icons';
 import { COLOR } from '../../assets/font/color'
 
+// component
+import Error from '../../components/User/Error'
+
 export default function Login({ navigation }) {
   const [isDisplayPassword, setIsDisplayPassword] = useState(true)
   const handleDisplayPassword = () => {
     setIsDisplayPassword(!isDisplayPassword)
   }
+
+  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('')
+  const [error, setError] = useState('')
+
+  const handleClickLogin = () => {
+    const user = {
+      email,
+      password
+    }
+    if (email == '' || password == '') {
+      setError("Please fill in your credentials")
+    }
+    else {
+      console.log("success")
+    }
+  }
+
   return (
     <ImageBackground
       source={require('../../assets/images/image-login-1.jpg')}
@@ -23,6 +44,13 @@ export default function Login({ navigation }) {
               style={{ width: '100%', color: 'white' }}
               placeholder="Email or Phone Number"
               placeholderTextColor={'#ccc'}
+              value={email}
+              id={"email"}
+              name={"email"}
+              onChangeText={(text) => {
+                setEmail(text)
+                setError('')
+              }}
             />
           </View>
           <View style={[styles.Input, { justifyContent: 'space-between' }]}>
@@ -31,6 +59,14 @@ export default function Login({ navigation }) {
               placeholder="Password"
               placeholderTextColor={'#ccc'}
               secureTextEntry={isDisplayPassword}
+              value={password}
+              name={"password"}
+              id={"password"}
+              onChangeText={(text) => {
+                setPassword(text)
+                setError('')
+              }}
+
             />
             <TouchableOpacity
               style={{ position: 'absolute', right: 20 }}
@@ -41,9 +77,10 @@ export default function Login({ navigation }) {
               }
             </TouchableOpacity>
           </View>
+          {error ? <Error message={error} /> : null}
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate('Main')}
+            onPress={() => handleClickLogin()}
           >
             <LinearGradient colors={['rgba(232, 192, 61, 1)', 'rgba(190, 100, 109, 1)']}
               style={styles.linearColor}
@@ -64,7 +101,9 @@ export default function Login({ navigation }) {
               height: '100%',
               alignItems: 'center',
               marginLeft: 5,
-            }}>
+            }}
+              onPress={() => navigation.navigate("SignUp")}
+            >
               <Text style={{
                 color: COLOR.secondaryColor,
                 fontSize: 18,

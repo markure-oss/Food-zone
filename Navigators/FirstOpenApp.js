@@ -3,16 +3,17 @@ import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 //Screens
-import Onboarding from "../screens/Onboarding";
-
+import Onboarding from "../screens/Onboarding"
+import UserNavigator from "./UserNavigator"
 import Main from "./Main"
 const Stack = createNativeStackNavigator();
 
 function FirstOpenApp() {
   return (
-    <Stack.Navigator initialRouteName='Onboarding' screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName='UserNavigator' screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Onboarding" component={Onboarding} />
       <Stack.Screen name="Main" component={Main} />
+      <Stack.Screen name="UserNavigator" component={UserNavigator} />
     </Stack.Navigator>
   )
 }

@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, LogBox } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
+import Toast from 'react-native-toast-message'
 // Navigator
 import HomeNavigation from './Navigators/HomeNavigator';
 import Main from './Navigators/Main';
@@ -24,6 +24,7 @@ export default function App() {
       <NavigationContainer>
         {/* <Main /> */}
         <FirstOpenApp />
+        <Toast ref={(ref) => Toast.setRef(ref)} />
       </NavigationContainer>
     </Provider>
   );
