@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React, { useEffect } from 'react'
 import { Ionicons } from '@expo/vector-icons';
 import { COLOR } from '../../assets/font/color'
+import { useNavigation } from '@react-navigation/native';
 
 // redux
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,6 +10,8 @@ import { cartSlice } from '../../redux/slices/cartSlice'
 import { quantitySelector, selectCartItemsWithID } from '../../redux/selector'
 
 export default function CartItem(props) {
+  const navigation = useNavigation()
+
   const { item } = props
   const quantity = useSelector(state =>
     selectCartItemsWithID(state, item._id))
@@ -26,7 +29,10 @@ export default function CartItem(props) {
   }
   return (
     <>
-      <View style={styles.cartItem}>
+      <TouchableOpacity
+        style={styles.cartItem}
+        onPress={() => navigation.navigate("Product Detail", { item: item })}
+      >
         <Image
           style={{ width: 100, height: 100 }}
           source={{ uri: item.image ? item.image : 'https://www.shoshinsha-design.com/wp-content/uploads/2020/05/noimage_icon-1.png' }}
@@ -47,7 +53,7 @@ export default function CartItem(props) {
             </TouchableOpacity>
           </View>
           <View style={styles.optionBuy}>
-            <Text style={{ fontSize: 15, color: COLOR.secondaryColor, fontWeight: 'bold', width: 50, marginRight: 50 }}>${item.price}</Text>
+            <Text style={{ fontSize: 15, color: COLOR.secondaryColor, fontWeight: 'bold', width: 60, marginRight: 50 }}>${item.price}</Text>
             <View style={{
               flexDirection: 'row',
               alignItems: 'center',
@@ -71,7 +77,7 @@ export default function CartItem(props) {
             </View>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
       <View style={styles.line}></View>
     </>
   )

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import {
     View,
     Text,
@@ -30,6 +31,7 @@ import { WINDOW_HEIGHT } from "../../shared/Dimensions";
 import SearchedProduct from "./SearchedProduct";
 import Banner from "../../components/Banner";
 import CategoryFilter from "./Category/CategoryFilter";
+import Loading from '../../components/Loading'
 
 import baseUrl from "../../common/baseUrl";
 import axios from "axios";
@@ -51,44 +53,47 @@ const ProductContainer = (props) => {
     const [productCtg, setProductCtg] = useState([]);
     const [active, setActive] = useState();
     const [initialState, setInitialState] = useState([]);
+    const [loading, setLoading] = useState(true)
+    useFocusEffect((
+        useCallback(() => {
+            setLoading(true)
+            axios.get(`${baseUrl}categories`)
+                .then((res) => {
+                    setCategories(res.data)
+                    // console.log(res.data)
+                    setLoading(false)
+                })
+                .catch((err) => console.log(err))
 
-    useEffect(() => {
+            axios.get(`${baseUrl}dishes`)
+                .then((res) => {
+                    setProducts(res.data);
+                    setProductFiltered(res.data);
+                    setFocus(false);
+                    // setCategories(productCategories);
+                    setProductCtg(res.data);
+                    setActive(-1);
+                    setInitialState(res.data);
+                })
+                .catch((err) => console.log(err))
+            // setProducts(data);
+            // setProductFiltered(data);
+            // setFocus(false);
+            // // setCategories(productCategories);
+            // setProductCtg(data);
+            // setActive(-1);
+            // setInitialState(data);
 
-        axios.get(`${baseUrl}categories`)
-            .then((res) => {
-                setCategories(res.data)
-                // console.log(res.data)
+            return (() => {
+                setProducts([]);
+                setProductFiltered([]);
+                setFocus();
+                setCategories([]);
+                setActive();
+                setInitialState();
             })
-            .catch((err) => console.log(err))
-
-        axios.get(`${baseUrl}dishes`)
-            .then((res) => {
-                setProducts(res.data);
-                setProductFiltered(res.data);
-                setFocus(false);
-                // setCategories(productCategories);
-                setProductCtg(res.data);
-                setActive(-1);
-                setInitialState(res.data);
-            })
-            .catch((err) => console.log(err))
-        // setProducts(data);
-        // setProductFiltered(data);
-        // setFocus(false);
-        // // setCategories(productCategories);
-        // setProductCtg(data);
-        // setActive(-1);
-        // setInitialState(data);
-
-        return (() => {
-            setProducts([]);
-            setProductFiltered([]);
-            setFocus();
-            setCategories([]);
-            setActive();
-            setInitialState();
-        })
-    }, [])
+        }, [])
+    ))
 
 
     //Product Methods
@@ -214,85 +219,89 @@ const ProductContainer = (props) => {
                     productsFiltered={productsFiltered}
                 />
             ) : (
-                <ScrollView style={styles.productMain}>
-                    <View style={{ marginTop: -20 }}>
-                        <View style={styles.productHome}>
-                            <Banner />
-                        </View>
-                        <View>
-                            <CategoryFilter
-                                categories={categories}
-                                categoryFilter={changeCtg}
-                                productCtg={productCtg}
-                                active={active}
-                                setActive={setActive}
-                            />
-                        </View>
-
-                        {/*flat Sale product*/}
-                        <SafeAreaView style={{ heigh: 200 }}>
-                            <View style={styles.flatSaleContainer}>
-                                <LinearGradient colors={['rgba(232, 192, 61, 1)', 'rgba(190, 100, 109, 1)']}
-                                    style={[styles.contentCard, { marginLeft: -20 }]}
-                                    end={{ x: 1, y: 0.5 }}
-                                >
-                                    <Text style={{ fontSize: 15, color: 'white' }}>Flat Sale</Text>
-                                </LinearGradient>
-                                <TouchableOpacity>
-                                    <Text
-                                        //see more
-                                        // onPress={}
-                                        style={[
-                                            styles.contentCard, {
-                                                fontSize: 15,
-                                                color: 'gray',
-                                                marginRight: -35,
-                                                textDecorationLine: 'underline'
-                                            }]}>
-                                        see more
-                                    </Text>
-                                </TouchableOpacity>
+                loading == false ? (
+                    <ScrollView style={styles.productMain}>
+                        <View style={{ marginTop: -20 }}>
+                            <View style={styles.productHome}>
+                                <Banner />
                             </View>
-                            <View style={{
-                                flex: 1,
-                            }}>
-                                <FlatList
-                                    style={{ flex: 1 }}
-                                    data={flatSale}
-                                    renderItem={renderFlatSale}
-                                    horizontal={true}
-                                    // keyExtractor={item => `${item.id}`}
-                                    keyExtractor={item => `${item._id.$oid}`}
-                                    showsHorizontalScrollIndicator={false}
+                            <View>
+                                <CategoryFilter
+                                    categories={categories}
+                                    categoryFilter={changeCtg}
+                                    productCtg={productCtg}
+                                    active={active}
+                                    setActive={setActive}
                                 />
                             </View>
-                        </SafeAreaView>
 
-                        <LinearGradient colors={['rgba(232, 192, 61, 1)', 'rgba(190, 100, 109, 1)']}
-                            style={styles.contentCard}
-                            end={{ x: 1, y: 0.5 }}
-                        >
-                            <Text style={{ fontSize: 15, color: 'white' }}>Popular</Text>
-                        </LinearGradient>
-                        {productCtg.length > 0 ? (
-                            <View style={styles.listContainer}>
-                                {productCtg.map((item, index) => {
-                                    return (
-                                        <ProductList
-                                            navigation={props.navigation}
-                                            key={item._id}
-                                            item={item}
-                                        />
-                                    )
-                                })}
-                            </View>
-                        ) : (
-                            <View style={styles.errorCtg}>
-                                <Text style={styles.errorTile}>No products found !</Text>
-                            </View>
-                        )}
-                    </View>
-                </ScrollView>
+                            {/*flat Sale product*/}
+                            <SafeAreaView style={{ heigh: 200 }}>
+                                <View style={styles.flatSaleContainer}>
+                                    <LinearGradient colors={['rgba(232, 192, 61, 1)', 'rgba(190, 100, 109, 1)']}
+                                        style={[styles.contentCard, { marginLeft: -20 }]}
+                                        end={{ x: 1, y: 0.5 }}
+                                    >
+                                        <Text style={{ fontSize: 15, color: 'white' }}>Flat Sale</Text>
+                                    </LinearGradient>
+                                    <TouchableOpacity>
+                                        <Text
+                                            //see more
+                                            // onPress={}
+                                            style={[
+                                                styles.contentCard, {
+                                                    fontSize: 15,
+                                                    color: 'gray',
+                                                    marginRight: -35,
+                                                    textDecorationLine: 'underline'
+                                                }]}>
+                                            see more
+                                        </Text>
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={{
+                                    flex: 1,
+                                }}>
+                                    <FlatList
+                                        style={{ flex: 1 }}
+                                        data={flatSale}
+                                        renderItem={renderFlatSale}
+                                        horizontal={true}
+                                        // keyExtractor={item => `${item.id}`}
+                                        keyExtractor={item => `${item._id.$oid}`}
+                                        showsHorizontalScrollIndicator={false}
+                                    />
+                                </View>
+                            </SafeAreaView>
+
+                            <LinearGradient colors={['rgba(232, 192, 61, 1)', 'rgba(190, 100, 109, 1)']}
+                                style={styles.contentCard}
+                                end={{ x: 1, y: 0.5 }}
+                            >
+                                <Text style={{ fontSize: 15, color: 'white' }}>Popular</Text>
+                            </LinearGradient>
+                            {productCtg.length > 0 ? (
+                                <View style={styles.listContainer}>
+                                    {productCtg.map((item, index) => {
+                                        return (
+                                            <ProductList
+                                                navigation={props.navigation}
+                                                key={item._id}
+                                                item={item}
+                                            />
+                                        )
+                                    })}
+                                </View>
+                            ) : (
+                                <View style={styles.errorCtg}>
+                                    <Text style={styles.errorTile}>No products found !</Text>
+                                </View>
+                            )}
+                        </View>
+                    </ScrollView>
+                ) : (
+                    <Loading />
+                )
             )}
         </>
     )

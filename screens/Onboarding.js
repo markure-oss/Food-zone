@@ -1,11 +1,16 @@
 import { StatusBar } from "expo-status-bar";
 import { View, Text, FlatList, StyleSheet, Animated } from 'react-native'
 import React, { useState, useRef } from 'react'
+import { COLOR } from '../assets/font/color'
+
+// data
 import slides from '../slides'
+
+// component
 import OnboardingItem from '../components/OnboardingItem'
 import Paginator from '../components/Paginator'
 import NextButton from '../components/NextButton'
-import { COLOR } from '../assets/font/color'
+import Main from '../Navigators/Main'
 
 export default function Onboarding({ navigation }) {
   const [currentIndex, setCurrentItem] = useState(0)
@@ -24,7 +29,7 @@ export default function Onboarding({ navigation }) {
     if (currentIndex < slides.length - 1) {
       slidesRef.current.scrollToIndex({ index: currentIndex + 1 })
     } else {
-      navigation.navigate("Landing")
+      navigation.navigate("Main")
     }
   }
   return (

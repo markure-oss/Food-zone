@@ -10,11 +10,9 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 // NavigatorStack
 import HomeNavigation from './HomeNavigator'
-import CartNavigator from './CartNavigator'
 import Notifications from "../screens/Notifications";
 import Profile from "../screens/Profile";
 import Setting from '../screens/Setting/Setting'
-
 
 
 const Tab = createMaterialBottomTabNavigator()

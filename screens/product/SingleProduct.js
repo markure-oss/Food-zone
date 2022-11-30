@@ -3,7 +3,7 @@ import {
   Image, ImageBackground, TouchableOpacity,
   StatusBar
 } from 'react-native'
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, useState, useEffect, useLayoutEffect } from 'react'
 import { LinearGradient } from 'expo-linear-gradient';
 import { COLOR } from '../../assets/font/color'
 
@@ -30,6 +30,9 @@ export default function SingleProduct(props) {
   const handleClickAdd = () => {
     dispatch(cartSlice.actions.addToCard(item))
   }
+  useEffect(() => {
+    setItem(props.route.params.item)
+  })
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
@@ -51,7 +54,7 @@ export default function SingleProduct(props) {
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <TouchableOpacity
                   style={{ height: '100%', justifyContent: 'center', marginRight: 30 }}
-                // onPress={() => }
+                  onPress={() => props.navigation.navigate("CartScreen")}
                 >
                   <Icon
                     name="shopping-cart"
@@ -64,7 +67,7 @@ export default function SingleProduct(props) {
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={{ height: '100%', justifyContent: 'center', }}
-                  onPress={() => props.navigation.navigate("CartScreen")}
+                // onPress={() => }
                 >
                   <Icon
                     name="ellipsis-v"

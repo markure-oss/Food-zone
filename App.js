@@ -6,11 +6,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // Navigator
 import HomeNavigation from './Navigators/HomeNavigator';
 import Main from './Navigators/Main';
-
+import FirstOpenApp from './Navigators/FirstOpenApp'
 //redux
 import store from './redux/store'
 import { Provider } from 'react-redux'
-
 
 LogBox.ignoreAllLogs(true);
 const Stack = createNativeStackNavigator();
@@ -23,7 +22,8 @@ export default function App() {
     <Provider store={store}>
       <StatusBar style={"light"} />
       <NavigationContainer>
-        <Main />
+        {/* <Main /> */}
+        <FirstOpenApp />
       </NavigationContainer>
     </Provider>
   );
