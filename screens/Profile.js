@@ -9,10 +9,19 @@ import {
   Dimensions,
   ScrollView
 } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState, useCallback, useContext } from 'react'
+import { useFocusEffect } from '@react-navigation/native-stack'
 import Footer, { currentPage } from "../components/Footer"
 import { Ionicons, Feather } from '@expo/vector-icons'
 import { COLOR } from '../assets/font/color'
+
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import axios from 'axios'
+import baseUrl from '../common/baseUrl'
+
+// Context
+import AuthGlobal from '../Context/store/AuthGlobal'
+import { logoutUser } from '../Context/actions/Auth.actions'
 
 let { height } = Dimensions.get("window")
 
@@ -60,7 +69,36 @@ const listButton = [
     sizeIcon: 24
   }
 ]
-export default function Profile() {
+export default function Profile(props) {
+  const context = useContext(AuthGlobal)
+  const [userProfile, setUserProfile] = useState()
+  useEffect(() => {
+    if (
+      context.stateUser.isAuthenticated == false ||
+      context.stateUser.isAuthenticated == null
+    ) {
+      props.navigation.navigate("Login")
+    }
+    else {
+      // console.log(context.stateUser.user)
+      AsyncStorage.getItem('jwt')
+        .then((res) => {
+          axios
+            .get(`${baseUrl}customers/${context.stateUser.user.customerId}`, {
+              headers: {
+                Authorization: `Bearer ${res}`
+              }
+            })
+            .then((user) => {
+              // console.log(user.data)
+
+              setUserProfile(user.data)
+            })
+            .catch((error) => console.log(error))
+        })
+    }
+    return setUserProfile()
+  }, [context.stateUser.isAuthenticated])
   return (
     <>
       <StatusBar barStyle='dark-content' />
@@ -74,11 +112,13 @@ export default function Profile() {
             />
           </View>
           <View style={{ justifyContent: 'center', padding: 20 }}>
-            <Text style={{ fontSize: 20, color: '#fff', fontWeight: 'bold' }}>Hung Pham</Text>
+            <Text style={{ fontSize: 20, color: '#fff', fontWeight: 'bold' }}>
+              {userProfile ? userProfile.name : "Error"}
+            </Text>
           </View>
         </View>
         <View style={{ height: height }}>
-          {
+          {/* {
             listButton.map((button) => {
               return (
                 <TouchableOpacity key={button.id}
@@ -95,7 +135,40 @@ export default function Profile() {
                 </TouchableOpacity>
               )
             })
-          }
+          } */}
+          <TouchableOpacity
+            style={styles.cardItem}>
+            <View style={{
+              flexDirection: 'row', alignItems: 'center',
+            }}>
+              <Ionicons name="chatbox-ellipses-outline" size={24} color="black" />
+              <Text style={{ fontSize: 17, marginLeft: 10, color: COLOR.mainColor }}>
+                {userProfile ? userProfile.email : "Error"}</Text>
+            </View>
+            <View>
+              <Feather name="edit" size={24} color="black" />
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.cardItem}
+            onPress={() => {
+              console.log("1234")
+              AsyncStorage.removeItem("jwt")
+              logoutUser(context.dispatch)
+              props.navigation.navigate("Login")
+            }}
+          >
+            <View style={{
+              flexDirection: 'row', alignItems: 'center',
+            }}>
+              <Ionicons name="settings-outline" size={24} color="black" />
+              <Text style={{ fontSize: 17, marginLeft: 10, color: COLOR.mainColor }}>
+                Logout</Text>
+            </View>
+            <View>
+              <Feather name="edit" size={24} color="black" />
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
     </>

@@ -17,8 +17,8 @@ export default function Login({ navigation }) {
     setIsDisplayPassword(!isDisplayPassword)
   }
 
-  const [password, setPassword] = useState('')
-  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('1234')
+  const [email, setEmail] = useState('1234@gmail.com')
   const [error, setError] = useState('')
 
   useEffect(() => {

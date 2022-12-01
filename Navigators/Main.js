@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 // import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { COLOR } from '../assets/font/color'
@@ -13,10 +13,11 @@ import HomeNavigation from './HomeNavigator'
 import Notifications from "../screens/Notifications";
 import Profile from "../screens/Profile";
 import Setting from '../screens/Setting/Setting'
-
-
+import AdminNavigator from './AdminNavigator'
+import AuthGlobal from '../Context/store/AuthGlobal'
 const Tab = createMaterialBottomTabNavigator()
 export default function Main() {
+  const context = useContext(AuthGlobal)
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -72,22 +73,25 @@ export default function Main() {
           )
         }}
       />
-      <Tab.Screen
-        name="Setting"
-        component={Setting}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <View>
-              <Icon
-                name="gear"
-                style={{ position: 'relative' }}
-                color={color}
-                size={25}
-              />
-            </View>
-          )
-        }}
-      />
+      {
+        context.stateUser.user.isAdmin ? <Tab.Screen
+          name="AdminNavigator"
+          component={AdminNavigator}
+          options={{
+            tabBarIcon: ({ color }) => (
+              <View>
+                <Icon
+                  name="gear"
+                  style={{ position: 'relative' }}
+                  color={color}
+                  size={25}
+                />
+              </View>
+            )
+          }}
+        /> : null
+      }
+
     </Tab.Navigator>
   )
 }
