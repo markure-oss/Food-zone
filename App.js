@@ -11,6 +11,8 @@ import FirstOpenApp from './Navigators/FirstOpenApp'
 import store from './redux/store'
 import { Provider } from 'react-redux'
 
+// authentication
+import Auth from './Context/store/Auth'
 LogBox.ignoreAllLogs(true);
 const Stack = createNativeStackNavigator();
 
@@ -19,14 +21,16 @@ const Stack = createNativeStackNavigator();
 export default function App() {
 
   return (
-    <Provider store={store}>
-      <StatusBar style={"light"} />
-      <NavigationContainer>
-        {/* <Main /> */}
-        <FirstOpenApp />
-        <Toast ref={(ref) => Toast.setRef(ref)} />
-      </NavigationContainer>
-    </Provider>
+    <Auth>
+      <Provider store={store}>
+        <StatusBar style={"light"} />
+        <NavigationContainer>
+          {/* <Main /> */}
+          <FirstOpenApp />
+          <Toast ref={(ref) => Toast.setRef(ref)} />
+        </NavigationContainer>
+      </Provider>
+    </Auth>
   );
 }
 

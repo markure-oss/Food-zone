@@ -7,24 +7,33 @@ import Toast from 'react-native-toast-message'
 // component
 import Error from '../../components/User/Error'
 
+import axios from 'axios';
+import baseUrl from '../../common/baseUrl';
+
 export default function SignUp({ navigation }) {
     const [isDisplayPassword, setIsDisplayPassword] = useState(true)
     const handleDisplayPassword = () => {
         setIsDisplayPassword(!isDisplayPassword)
     }
 
-    const [userName, setUserName] = useState('')
+    const [name, setName] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
+
+
     const [error, setError] = useState('')
 
     const handleClickSignUp = () => {
         const user = {
             email,
             password,
-            userName
+            name,
+            phone,
+            isAdmin: false,
         }
-        if (email == '' || password == '' || userName == '') {
+
+        if (email == '' || password == '' || name == '' || phone == '') {
             setError("Please fill in your credentials")
             Toast.show({
                 topOffset: 60,
@@ -34,15 +43,29 @@ export default function SignUp({ navigation }) {
             })
         }
         else {
-            Toast.show({
-                topOffset: 60,
-                type: "success",
-                text1: "Registration Succeeded",
-                text2: "Please login into your account"
-            })
-            setTimeout(() => {
-                navigation.navigate("Login")
-            }, 500)
+            axios
+                .post(`${baseUrl}customers/register`, user)
+                .then((res) => {
+                    if (res.status === 200) {
+                        Toast.show({
+                            topOffset: 60,
+                            type: "success",
+                            text1: "Registration Succeeded",
+                            text2: "Please login into your account"
+                        })
+                        setTimeout(() => {
+                            navigation.navigate("Login")
+                        }, 500)
+                    }
+                })
+                .catch((error) => {
+                    Toast.show({
+                        topOffset: 60,
+                        type: "error",
+                        text1: "Something went wrong",
+                        text2: "Please try again"
+                    })
+                })
         }
     }
     return (
@@ -57,13 +80,27 @@ export default function SignUp({ navigation }) {
                     <View style={styles.Input}>
                         <TextInput
                             style={{ width: '100%', color: 'white' }}
-                            placeholder="UserName"
+                            placeholder="Name"
                             placeholderTextColor={'#ccc'}
-                            value={userName}
-                            id={"userName"}
-                            name={"userName"}
+                            value={name}
+                            id={"name"}
+                            name={"name"}
                             onChangeText={(text) => {
-                                setUserName(text)
+                                setName(text)
+                                setError('')
+                            }}
+                        />
+                    </View>
+                    <View style={styles.Input}>
+                        <TextInput
+                            style={{ width: '100%', color: 'white' }}
+                            placeholder="Phone"
+                            placeholderTextColor={'#ccc'}
+                            value={phone}
+                            id={"phone"}
+                            name={"phone"}
+                            onChangeText={(text) => {
+                                setPhone(text)
                                 setError('')
                             }}
                         />
@@ -166,7 +203,7 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 20,
         position: 'absolute',
         width: '100%',
-        height: '70%',
+        height: '80%',
         backgroundColor: COLOR.mainColor,
         bottom: 0,
         alignItems: 'center',

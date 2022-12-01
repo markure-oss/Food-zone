@@ -20,7 +20,8 @@ export default function Landing({ navigation }) {
           >
             <LinearGradient colors={['rgba(232, 192, 61, 1)', 'rgba(190, 100, 109, 1)']}
               style={styles.linearColor}
-              end={{ x: 1, y: 0.5 }}
+
+
             >
               <Text style={{ fontSize: 20, color: 'white' }}>Get Started</Text>
             </LinearGradient>

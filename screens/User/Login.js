@@ -1,13 +1,17 @@
 import { View, Text, ImageBackground, StyleSheet, TouchableOpacity, TextInput } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialIcons, AntDesign, FontAwesome, Ionicons } from '@expo/vector-icons';
 import { COLOR } from '../../assets/font/color'
 
+// Context
+import AuthGlobal from '../../Context/store/AuthGlobal'
+import { loginUser } from '../../Context/actions/Auth.actions'
 // component
 import Error from '../../components/User/Error'
 
 export default function Login({ navigation }) {
+  const context = useContext(AuthGlobal)
   const [isDisplayPassword, setIsDisplayPassword] = useState(true)
   const handleDisplayPassword = () => {
     setIsDisplayPassword(!isDisplayPassword)
@@ -17,6 +21,11 @@ export default function Login({ navigation }) {
   const [email, setEmail] = useState('')
   const [error, setError] = useState('')
 
+  useEffect(() => {
+    if (context.stateUser.isAuthenticated === true) {
+      navigation.navigate("Main")
+    }
+  }, [context.stateUser.isAuthenticated])
   const handleClickLogin = () => {
     const user = {
       email,
@@ -26,7 +35,7 @@ export default function Login({ navigation }) {
       setError("Please fill in your credentials")
     }
     else {
-      console.log("success")
+      loginUser(user, context.dispatch)
     }
   }
 
