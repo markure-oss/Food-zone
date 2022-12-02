@@ -93,26 +93,7 @@ export default function Products(props) {
         ) : null}
       </View>
       <View style={{ borderBottomWidth: 1, borderColor: '#ccc', marginTop: 20, opacity: 0.5 }}></View>
-      <View style={styles.buttonTabContainer}>
-        <TouchableOpacity style={styles.buttonChangeTab}
-          onPress={() => props.navigation.navigate("Orders")}
-        >
-          <Entypo name="plus" size={24} color="white" />
-          <Text style={styles.titleButtonChangeTab}>Orders</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonChangeTab}
-          onPress={() => props.navigation.navigate("ProductForm")}
-        >
-          <Entypo name="plus" size={24} color="white" />
-          <Text style={styles.titleButtonChangeTab}>Products</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonChangeTab}
-          onPress={() => props.navigation.navigate("Categories")}
-        >
-          <Entypo name="plus" size={24} color="white" />
-          <Text style={styles.titleButtonChangeTab}>Categories</Text>
-        </TouchableOpacity>
-      </View>
+
 
       <View style={styles.productsList}>
         {
@@ -126,7 +107,30 @@ export default function Products(props) {
           )
         }
       </View>
+      <View style={styles.buttonTabContainer}>
+        {/* <TouchableOpacity style={styles.buttonChangeTab}
+          onPress={() => props.navigation.navigate("Orders")}
+        >
+          <Entypo name="plus" size={24} color="white" />
+          <Text style={styles.titleButtonChangeTab}>Orders</Text>
+        </TouchableOpacity> */}
+        <TouchableOpacity style={styles.buttonChangeTab}
+          onPress={() => props.navigation.navigate("ProductForm")}
+        >
+          <View>
+
+            <Entypo name="plus" size={24} color="white" />
+          </View>
+        </TouchableOpacity>
+        {/* <TouchableOpacity style={styles.buttonChangeTab}
+          onPress={() => props.navigation.navigate("Categories")}
+        >
+          <Entypo name="plus" size={24} color="white" />
+          <Text style={styles.titleButtonChangeTab}>Categories</Text>
+        </TouchableOpacity> */}
+      </View>
     </View>
+
   )
 }
 
@@ -170,24 +174,25 @@ const styles = StyleSheet.create({
   },
   buttonTabContainer: {
     marginTop: 20,
-    width: '100%',
-    height: '7%',
+    width: 60,
+    height: 60,
     flexDirection: 'row',
-    justifyContent: 'space-evenly'
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: 30, right: 20,
+    borderRadius: 200,
+
   },
   buttonChangeTab: {
+    flex: 1,
     flexDirection: 'row',
-    width: '30%',
+    width: '100%',
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 100,
-    borderWidth: 0.5, borderColor: '#ccc'
+    borderRadius: 200,
+    backgroundColor: COLOR.secondaryColor,
   },
-  titleButtonChangeTab: {
-    color: 'white',
-    fontSize: 15,
-    marginLeft: 10,
-    flex: 1,
-  }
+
 })

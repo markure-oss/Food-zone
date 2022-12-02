@@ -89,9 +89,23 @@ export default function Main() {
               </View>
             )
           }}
-        /> : null
+        /> : <Tab.Screen
+          name="Setting"
+          component={Setting}
+          options={{
+            tabBarIcon: ({ color }) => (
+              <View>
+                <Icon
+                  name="gear"
+                  style={{ position: 'relative' }}
+                  color={color}
+                  size={25}
+                />
+              </View>
+            )
+          }}
+        />
       }
-
     </Tab.Navigator>
   )
 }

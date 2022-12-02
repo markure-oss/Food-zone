@@ -219,7 +219,6 @@ export default function ProductForm(props) {
   return (
 
     <ScrollView style={styles.container}>
-      {console.log(gallery)}
       <View style={{
         width: '100%',
         justifyContent: "center",
