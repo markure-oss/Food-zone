@@ -33,7 +33,7 @@ export default function ProductForm(props) {
   const [price, setPrice] = useState()
   const [description, setDescription] = useState()
   const [image, setImage] = useState('')
-  const [mainImage, setMainImage] = useState('')
+  const [gallery, setGallery] = useState([])
 
   const [category, setCategory] = useState()
   const [categories, setCategories] = useState([])
@@ -50,6 +50,14 @@ export default function ProductForm(props) {
   useEffect(() => {
     if (!props.route.params) {
       // console.log("null")
+      setGallery([
+        // 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+        // 'https://images.unsplash.com/photo-1585518419759-7fe2e0fbf8a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=724&q=80',
+        // 'https://plus.unsplash.com/premium_photo-1664189121566-b7882c378506?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=386&q=80',
+        // 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+        // 'https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+        // 'https://plus.unsplash.com/premium_photo-1664189121750-442ff6242ec1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80'
+      ])
       setItem(null)
     } else {
       // console.log(props.route.params.item.item._id)
@@ -61,6 +69,10 @@ export default function ProductForm(props) {
       setPrice(props.route.params.item.item.price.toString())
       setCategory(props.route.params.item.item.category._id)
       setPickerValue(props.route.params.item.item.category._id)
+      setNumReview(props.route.params.item.item.numReview.toString())
+      setImage(props.route.params.item.item.image)
+      // setGallery(props.route.params.item.item.images)
+
     }
 
     AsyncStorage.getItem("jwt")
@@ -103,7 +115,6 @@ export default function ProductForm(props) {
       });
       if (result) {
         // console.log(result)
-        setMainImage(result.uri);
         setImage(result.uri);
         // console.log(mainImage, "   ", image)
         // console.log(result.assets[0])
@@ -136,7 +147,7 @@ export default function ProductForm(props) {
       //   type: mime.getType(imageUri),
       //   name: imageUri.split("/").pop()
       // })
-      formData.append("image", "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80")
+      formData.append("image", image)
       formData.append("description", description)
       formData.append("richDescription", richDescription)
       formData.append("price", price)
@@ -144,6 +155,7 @@ export default function ProductForm(props) {
       formData.append("category", category)
       formData.append("numReview", numReview)
       formData.append("isFeatured", isFeatured)
+      // formData.append("gallery", gallery)
 
 
       const config = {
@@ -207,7 +219,7 @@ export default function ProductForm(props) {
   return (
 
     <ScrollView style={styles.container}>
-      {console.log(numReview)}
+      {console.log(gallery)}
       <View style={{
         width: '100%',
         justifyContent: "center",
@@ -216,7 +228,7 @@ export default function ProductForm(props) {
         <Text style={styles.title}>ProductForm</Text>
         {/* Form */}
         <View style={styles.imageContainer}>
-          <Image style={styles.image} source={{ uri: mainImage ? mainImage : "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80" }} />
+          <Image style={styles.image} source={{ uri: image ? image : "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80" }} />
           <TouchableOpacity style={styles.imagePicker} onPress={() => pickImage()}>
             <Icon style={{ color: 'white' }} name="camera" size={20} />
           </TouchableOpacity>
