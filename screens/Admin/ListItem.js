@@ -1,9 +1,13 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, TouchableHighlight, Modal } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity, TouchableHighlight, Modal, LogBox } from 'react-native'
 import React, { useState } from 'react'
 import { COLOR } from '../../assets/font/color'
 import { FontAwesome, AntDesign, Ionicons } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome'
 
+
+// LogBox.ignoreWarnings([
+//   'Non-serializable values were found in the navigation state',
+// ]);
 export default function ListItem(props) {
   const [modalVisible, setModalVisible] = useState(false)
   return (
@@ -37,7 +41,7 @@ export default function ListItem(props) {
               <View style={styles.line}></View>
               <TouchableOpacity
                 onPress={() => [
-                  props.navigation.navigate("ProductForm"),
+                  props.navigation.navigate("ProductForm", { item: props }),
                   setModalVisible(false)
                 ]}
                 style={styles.optionButton}
@@ -46,10 +50,10 @@ export default function ListItem(props) {
               </TouchableOpacity>
               <View style={styles.line}></View>
               <TouchableOpacity
-                // onPress={() => [
-                //   props.navigation.navigate("ProductForm"),
-                //   setModalVisible(false)
-                // ]}
+                onPress={() => {
+                  props.delete(props.item._id)
+                  setModalVisible(false)
+                }}
                 style={styles.optionButton}
               >
                 <Text style={[styles.textModal, { color: COLOR.secondaryColor }]}>Delete</Text>
@@ -80,9 +84,7 @@ export default function ListItem(props) {
             <Text style={[styles.text, { marginRight: 5 }]}>{props.item.rating}</Text>
             <FontAwesome name="star" size={14} color="#FDCC0D" />
           </View>
-
         </View>
-
       </TouchableOpacity>
     </View>
   )
@@ -91,7 +93,7 @@ export default function ListItem(props) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    marginTop: 20
+    marginTop: 20,
   },
   buttonContainer: {
     flexDirection: 'row',
@@ -149,6 +151,6 @@ const styles = StyleSheet.create({
   },
   line: {
     borderTopWidth: 0.5,
-    opacity: 0.5
+    opacity: 0.5,
   }
 })

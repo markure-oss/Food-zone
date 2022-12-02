@@ -3,7 +3,6 @@ import React from 'react'
 
 export default function Error(props) {
 
-  console.log("123")
   return (
     <View style={styles.container}>
       <Text style={{ color: 'red' }}>{props.message}</Text>

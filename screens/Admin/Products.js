@@ -4,7 +4,7 @@ import {
   SafeAreaView, ActivityIndicator, Dimensions, Modal,
   TouchableOpacity
 } from 'react-native'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState, useEffect } from 'react'
 import { useFocusEffect } from '@react-navigation/native'
 import { COLOR } from '../../assets/font/color'
 import axios from 'axios'
@@ -16,7 +16,7 @@ import Loading from '../../components/Loading'
 import ListItem from './ListItem'
 
 // icon
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, Entypo } from '@expo/vector-icons';
 
 const { height } = Dimensions.get("window")
 
@@ -26,6 +26,21 @@ export default function Products(props) {
   const [loading, setLoading] = useState(true)
   const [token, setToken] = useState()
   const [focus, setFocus] = useState();
+
+  // delete dishes
+  const deleteDish = (id) => {
+    setLoading(true)
+    axios
+      .delete(`${baseUrl}dishes/${id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      .then((res) => {
+        const productsCalled = productFilter.filter((item) => item._id !== id)
+        setProductFilter(productsCalled)
+        setLoading(false)
+      })
+      .catch((err) => console.log(err))
+  }
 
   const searchProduct = (text) => {
     if (text.length === 0) {
@@ -78,13 +93,34 @@ export default function Products(props) {
         ) : null}
       </View>
       <View style={{ borderBottomWidth: 1, borderColor: '#ccc', marginTop: 20, opacity: 0.5 }}></View>
+      <View style={styles.buttonTabContainer}>
+        <TouchableOpacity style={styles.buttonChangeTab}
+          onPress={() => props.navigation.navigate("Orders")}
+        >
+          <Entypo name="plus" size={24} color="white" />
+          <Text style={styles.titleButtonChangeTab}>Orders</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.buttonChangeTab}
+          onPress={() => props.navigation.navigate("ProductForm")}
+        >
+          <Entypo name="plus" size={24} color="white" />
+          <Text style={styles.titleButtonChangeTab}>Products</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.buttonChangeTab}
+          onPress={() => props.navigation.navigate("Categories")}
+        >
+          <Entypo name="plus" size={24} color="white" />
+          <Text style={styles.titleButtonChangeTab}>Categories</Text>
+        </TouchableOpacity>
+      </View>
+
       <View style={styles.productsList}>
         {
           // console.log(loading)
           loading ? <View style={styles.spinner}><Loading /></View> : (
             <FlatList
               data={productFilter}
-              renderItem={(item, index) => (<ListItem item={item.item} navigation={props.navigation} />)}
+              renderItem={(item, index) => (<ListItem item={item.item} navigation={props.navigation} delete={deleteDish} />)}
               keyExtractor={(item) => item._id}
             />
           )
@@ -123,6 +159,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   productsList: {
+    flex: 1,
     paddingHorizontal: 20,
     width: '100%',
   },
@@ -130,6 +167,27 @@ const styles = StyleSheet.create({
     height: height / 2,
     justifyContent: 'center',
     alignItems: 'center',
-
+  },
+  buttonTabContainer: {
+    marginTop: 20,
+    width: '100%',
+    height: '7%',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly'
+  },
+  buttonChangeTab: {
+    flexDirection: 'row',
+    width: '30%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 100,
+    borderWidth: 0.5, borderColor: '#ccc'
+  },
+  titleButtonChangeTab: {
+    color: 'white',
+    fontSize: 15,
+    marginLeft: 10,
+    flex: 1,
   }
 })
