@@ -83,11 +83,18 @@ export const loginUser = (user, dispatch) => {
     .then((res) => res.json())
     .then((data) => {
       if (data) {
-        const token = data.token;
-        console.log(token)
+        const token = data.token
+        // console.log(token)
         AsyncStorage.setItem("jwt", token)
         const decoded = jwt_decode(token)
+        console.log("action ", decoded)
         dispatch(setCurrentUser(decoded, user))
+        Toast.show({
+          topOffset: 60,
+          type: "success",
+          text1: "Login Successfully!",
+          text2: "Welcome to my Food App"
+        });
       } else {
         logoutUser(dispatch)
       }

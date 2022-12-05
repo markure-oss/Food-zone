@@ -9,6 +9,9 @@ import {
 import { Button } from 'react-native-paper';
 import { orange } from "@mui/material/colors";
 
+import Toast from "react-native-toast-message"
+
+
 // redux 
 import { useDispatch } from 'react-redux'
 import { cartSlice } from '../../redux/slices/cartSlice'
@@ -21,6 +24,12 @@ const ProductCard = (props) => {
     const dispatch = useDispatch()
     const handleClickAdd = (item) => {
         dispatch(cartSlice.actions.addToCard(item))
+        Toast.show({
+            topOffset: 60,
+            type: "success",
+            text1: "Added food to your cart",
+            text2: ""
+        });
     }
     return (
         <ScrollView>

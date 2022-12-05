@@ -99,35 +99,39 @@ export default function Products(props) {
         {
           // console.log(loading)
           loading ? <View style={styles.spinner}><Loading /></View> : (
-            <FlatList
-              data={productFilter}
-              renderItem={(item, index) => (<ListItem item={item.item} navigation={props.navigation} delete={deleteDish} />)}
-              keyExtractor={(item) => item._id}
-            />
-          )
-        }
-      </View>
-      <View style={styles.buttonTabContainer}>
-        {/* <TouchableOpacity style={styles.buttonChangeTab}
+            <>
+
+              <FlatList
+                data={productFilter}
+                renderItem={(item, index) => (<ListItem item={item.item} navigation={props.navigation} delete={deleteDish} />)}
+                keyExtractor={(item) => item._id}
+              />
+              <View style={styles.buttonTabContainer}>
+                {/* <TouchableOpacity style={styles.buttonChangeTab}
           onPress={() => props.navigation.navigate("Orders")}
         >
           <Entypo name="plus" size={24} color="white" />
           <Text style={styles.titleButtonChangeTab}>Orders</Text>
         </TouchableOpacity> */}
-        <TouchableOpacity style={styles.buttonChangeTab}
-          onPress={() => props.navigation.navigate("ProductForm")}
-        >
-          <View>
+                <TouchableOpacity style={styles.buttonChangeTab}
+                  onPress={() => props.navigation.navigate("ProductForm")}
+                >
+                  <View>
 
-            <Entypo name="plus" size={24} color="white" />
-          </View>
-        </TouchableOpacity>
-        {/* <TouchableOpacity style={styles.buttonChangeTab}
+                    <Entypo name="plus" size={24} color="white" />
+                  </View>
+                </TouchableOpacity>
+                {/* <TouchableOpacity style={styles.buttonChangeTab}
           onPress={() => props.navigation.navigate("Categories")}
         >
           <Entypo name="plus" size={24} color="white" />
           <Text style={styles.titleButtonChangeTab}>Categories</Text>
         </TouchableOpacity> */}
+              </View>
+            </>
+
+          )
+        }
       </View>
     </View>
 

@@ -383,6 +383,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#ccc',
     fontWeight: 'bold',
+    marginBottom: 20
   },
   content: {
     borderTopLeftRadius: 20,

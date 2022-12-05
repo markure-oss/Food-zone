@@ -152,7 +152,6 @@ export default function Profile(props) {
           <TouchableOpacity
             style={styles.cardItem}
             onPress={() => {
-              console.log("1234")
               AsyncStorage.removeItem("jwt")
               logoutUser(context.dispatch)
               props.navigation.navigate("Login")

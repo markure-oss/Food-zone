@@ -20,6 +20,7 @@ export default function (state, action) {
   switch (action.type) {
     case SET_CURRENT_USER:
       // console.log(action)
+      console.log(action)
       return {
         ...state,
         isAuthenticated: !isEmpty(action.payload),

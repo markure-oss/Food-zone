@@ -4,8 +4,9 @@ import {
   StatusBar
 } from 'react-native'
 import React, { useMemo, useState, useEffect, useLayoutEffect } from 'react'
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from 'expo-linear-gradient'
 import { COLOR } from '../../assets/font/color'
+import Toast from 'react-native-toast-message'
 
 // redux
 import { useDispatch } from 'react-redux'
@@ -29,6 +30,12 @@ export default function SingleProduct(props) {
   const [availability, setAvailability] = useState('')
   const handleClickAdd = () => {
     dispatch(cartSlice.actions.addToCard(item))
+    Toast.show({
+      topOffset: 60,
+      type: "success",
+      text1: "Added food to your cart",
+      text2: ""
+    });
   }
   useEffect(() => {
     setItem(props.route.params.item)
