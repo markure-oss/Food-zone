@@ -58,7 +58,7 @@ export default function Orders(props) {
               orderListAll.length > 0 ?
                 orderListAll.map((order) => {
                   // console.log(order.customer._id)
-                  return <OrderCard key={order._id} order={order} navigation={props.navigation} isAdmin={isAdmin} />
+                  return <OrderCard key={order._id} order={order} navigation={props.navigation} isAdmin={context.stateUser.isAdmin} />
                 }
                 ) : <View style={{ flex: 1, alignItems: 'center', }}>
                   <View style={{
@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: StatusBar.currentHeight,
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingTop: Platform.OS == "android" ? 0 : 40
   }
 })

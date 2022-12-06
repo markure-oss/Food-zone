@@ -92,7 +92,7 @@ export default function OrderCard(props) {
         })
       })
       .catch((err) => console.log(err))
-    props.navigation.navigate("Products")
+    props.navigation.navigate("ProductContainer")
   }
   return (
     <View style={styles.container}>
@@ -155,25 +155,22 @@ export default function OrderCard(props) {
                 <Text style={{ color: 'white' }}>Update</Text>
               </TouchableOpacity>
             </View>
-            : null
-        }
-        {
-          isAdmin === false && order.status === "Delivered" ?
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', marginTop: 10 }}>
-              <TouchableOpacity
-                style={{
-                  backgroundColor: '#33bbff',
-                  padding: 10,
-                  paddingHorizontal: 20,
-                  borderRadius: 10,
-                  marginRight: 10
-                }}
-                onPress={() => received()}
-              >
-                <Text style={{ color: 'white' }}>Received</Text>
-              </TouchableOpacity>
-            </View>
-            : null
+            : order.status === "Delivered" ?
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', marginTop: 10 }}>
+                <TouchableOpacity
+                  style={{
+                    backgroundColor: '#33bbff',
+                    padding: 10,
+                    paddingHorizontal: 20,
+                    borderRadius: 10,
+                    marginRight: 10
+                  }}
+                  onPress={() => received()}
+                >
+                  <Text style={{ color: 'white' }}>Received</Text>
+                </TouchableOpacity>
+              </View>
+              : null
         }
 
       </View>
