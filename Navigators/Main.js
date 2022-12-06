@@ -12,7 +12,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import HomeNavigation from './HomeNavigator'
 import Notifications from "../screens/Notifications";
 import Profile from "../screens/Profile";
-import Setting from '../screens/Setting/Setting'
+import OrderOfUser from '../screens/User/OrdersOfUser'
 import AdminNavigator from './AdminNavigator'
 import AuthGlobal from '../Context/store/AuthGlobal'
 const Tab = createMaterialBottomTabNavigator()
@@ -90,8 +90,8 @@ export default function Main() {
             )
           }}
         /> : <Tab.Screen
-          name="Setting"
-          component={Setting}
+          name="OrderOfUser"
+          component={OrderOfUser}
           options={{
             tabBarIcon: ({ color }) => (
               <View>

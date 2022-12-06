@@ -14,7 +14,7 @@ import { useFocusEffect } from '@react-navigation/native-stack'
 import Footer, { currentPage } from "../components/Footer"
 import { Ionicons, Feather } from '@expo/vector-icons'
 import { COLOR } from '../assets/font/color'
-
+import Loading from '../components/Loading'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import axios from 'axios'
 import baseUrl from '../common/baseUrl'
@@ -72,7 +72,9 @@ const listButton = [
 export default function Profile(props) {
   const context = useContext(AuthGlobal)
   const [userProfile, setUserProfile] = useState()
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
+    setLoading(true)
     if (
       context.stateUser.isAuthenticated == false ||
       context.stateUser.isAuthenticated == null
@@ -91,8 +93,8 @@ export default function Profile(props) {
             })
             .then((user) => {
               // console.log(user.data)
-
               setUserProfile(user.data)
+              setLoading(false)
             })
             .catch((error) => console.log(error))
         })
@@ -101,24 +103,25 @@ export default function Profile(props) {
   }, [context.stateUser.isAuthenticated])
   return (
     <>
-      <StatusBar barStyle='dark-content' />
-      <View style={styles.profileContainer}>
-        <Text style={styles.titleProfile}>Profile</Text>
-        <View style={styles.profileCard}>
-          <View style={styles.borderAvatar}>
-            <Image
-              style={styles.avatar}
-              source={require("../assets/images/profile.jpg")}
-            />
-          </View>
-          <View style={{ justifyContent: 'center', padding: 20 }}>
-            <Text style={{ fontSize: 20, color: '#fff', fontWeight: 'bold' }}>
-              {userProfile ? userProfile.name : "Error"}
-            </Text>
-          </View>
-        </View>
-        <View style={{ height: height }}>
-          {/* {
+      {
+        loading ? <Loading /> :
+          <View style={styles.profileContainer}>
+            <Text style={styles.titleProfile}>Profile</Text>
+            <View style={styles.profileCard}>
+              <View style={styles.borderAvatar}>
+                <Image
+                  style={styles.avatar}
+                  source={require("../assets/images/profile.jpg")}
+                />
+              </View>
+              <View style={{ justifyContent: 'center', padding: 20 }}>
+                <Text style={{ fontSize: 20, color: '#fff', fontWeight: 'bold' }}>
+                  {userProfile ? userProfile.name : "Error"}
+                </Text>
+              </View>
+            </View>
+            <View style={{ height: height }}>
+              {/* {
             listButton.map((button) => {
               return (
                 <TouchableOpacity key={button.id}
@@ -136,40 +139,42 @@ export default function Profile(props) {
               )
             })
           } */}
-          <TouchableOpacity
-            style={styles.cardItem}>
-            <View style={{
-              flexDirection: 'row', alignItems: 'center',
-            }}>
-              <Ionicons name="chatbox-ellipses-outline" size={24} color="black" />
-              <Text style={{ fontSize: 17, marginLeft: 10, color: COLOR.mainColor }}>
-                {userProfile ? userProfile.email : "Error"}</Text>
+              <TouchableOpacity
+                style={styles.cardItem}>
+                <View style={{
+                  flexDirection: 'row', alignItems: 'center',
+                }}>
+                  <Ionicons name="chatbox-ellipses-outline" size={24} color="black" />
+                  <Text style={{ fontSize: 17, marginLeft: 10, color: COLOR.mainColor }}>
+                    {userProfile ? userProfile.email : "Error"}</Text>
+                </View>
+                <View>
+                  <Feather name="edit" size={24} color="black" />
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.cardItem}
+                onPress={() => {
+                  AsyncStorage.removeItem("jwt")
+                  logoutUser(context.dispatch)
+                  props.navigation.navigate("Login")
+                }}
+              >
+                <View style={{
+                  flexDirection: 'row', alignItems: 'center',
+                }}>
+                  <Ionicons name="settings-outline" size={24} color="black" />
+                  <Text style={{ fontSize: 17, marginLeft: 10, color: COLOR.mainColor }}>
+                    Logout</Text>
+                </View>
+                <View>
+                  <Feather name="edit" size={24} color="black" />
+                </View>
+              </TouchableOpacity>
             </View>
-            <View>
-              <Feather name="edit" size={24} color="black" />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.cardItem}
-            onPress={() => {
-              AsyncStorage.removeItem("jwt")
-              logoutUser(context.dispatch)
-              props.navigation.navigate("Login")
-            }}
-          >
-            <View style={{
-              flexDirection: 'row', alignItems: 'center',
-            }}>
-              <Ionicons name="settings-outline" size={24} color="black" />
-              <Text style={{ fontSize: 17, marginLeft: 10, color: COLOR.mainColor }}>
-                Logout</Text>
-            </View>
-            <View>
-              <Feather name="edit" size={24} color="black" />
-            </View>
-          </TouchableOpacity>
-        </View>
-      </View>
+          </View>
+      }
+
     </>
   )
 }

@@ -16,7 +16,6 @@ import AuthGlobal from '../../Context/store/AuthGlobal'
 
 export default function Orders(props) {
   const context = useContext(AuthGlobal)
-  const [isAdmin, setIsAdmin] = useState(false)
   const [customer, setCustomer] = useState('')
   const [orderListAll, setOrderListAll] = useState()
   const [loading, setLoading] = useState(true)
@@ -26,19 +25,17 @@ export default function Orders(props) {
       axios
         .get(`${baseUrl}orders`)
         .then((res) => {
-          // if (isAdmin) {
-          setOrderListAll(res.data)
-          // }
-          // else {
-          //   setOrderListAll(checkOrder(res.data))
-          // }
+          const data = res.data
+          const userOrders = data.filter((order) => {
+            return order.customer._id == context.stateUser.user.customerId
+          })
+          setOrderListAll(userOrders)
           setLoading(false)
         })
         .catch((error) => {
           console.log(error)
         })
       setLoading(true)
-      setIsAdmin(context.stateUser.user.isAdmin)
       setCustomer(context.stateUser.user.customerId)
     }, [context.stateUser.isAuthenticated])
   )
@@ -58,14 +55,10 @@ export default function Orders(props) {
           <Text style={styles.title}>Orders</Text>
           <View style={{ width: '100%', }}>
             {
-              orderListAll.length > 0 ?
-                orderListAll.map((order) => {
-                  // console.log(order.customer._id)
-                  return <OrderCard key={order._id} order={order} navigation={props.navigation} isAdmin={isAdmin} />
-                }
-                ) : <View style={{ flex: 1, alignItems: 'center', }}>
-                  <Text style={{ color: '#ccc', fontSize: 30, }}>No Orders</Text>
-                </View>
+              orderListAll.map((order) => {
+                // console.log(order.customer._id)
+                return <OrderCard key={order._id} order={order} navigation={props.navigation} isAdmin={context.stateUser.user.isAdmin} />
+              })
             }
           </View>
         </View>

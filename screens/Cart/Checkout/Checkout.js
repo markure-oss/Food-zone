@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Text, View, Button, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 // import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 
@@ -9,6 +9,12 @@ import Input from "../../../components/Form/Input";
 import { connect } from "react-redux";
 import { LinearGradient } from "expo-linear-gradient";
 import { retry } from "@reduxjs/toolkit/query";
+
+// redux
+import { cartItemsSelector } from '../../../redux/selector';
+import { useSelector } from 'react-redux'
+
+import AuthGlobal from '../../../Context/store/AuthGlobal'
 
 import { COLOR } from "../../../assets/font/color";
 import Error from "../../../components/User/Error"
@@ -23,9 +29,14 @@ const Checkout = (props) => {
   const [user, setUser] = useState();
   const [selected, setSelected] = useState("");
   const [error, setError] = useState('');
-  useEffect(() => {
-    setOrderItems(props.cartItems)
 
+  const context = useContext(AuthGlobal)
+
+  const userID = context.stateUser.user.customerId
+
+  const cartItems = useSelector(cartItemsSelector)
+  useEffect(() => {
+    setOrderItems(cartItems)
     return () => {
       setOrderItems();
     }
@@ -39,9 +50,11 @@ const Checkout = (props) => {
       phone,
       shippingAddress1: address,
       shippingAddress2: address2,
-      zip
+      zip,
+      country: 'Vietnam',
+      status: 'Pending',
+      customer: userID
     }
-
     if (order.city == "" || order.orderItems == "" || order.shippingAddress1 == "" ||
       order.shippingAddress2 == "") {
       setError("Fields is required")

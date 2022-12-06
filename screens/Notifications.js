@@ -42,17 +42,15 @@ const Notifications = () => {
             <StatusBar barStyle='light-content' />
             <View style={styles.notificationContainer}>
                 <Text style={styles.titleNot}>Notification</Text>
-                <ScrollView>
-                    <FlatList
-                        style={{
-                            backgroundColor: COLOR.mainColor,
-                            height,
-                        }}
-                        data={Notification}
-                        renderItem={renderNotification}
-                        keyExtractor={item => `${item._id.$oid}`}
-                    />
-                </ScrollView>
+                <FlatList
+                    style={{
+                        backgroundColor: COLOR.mainColor,
+                        height,
+                    }}
+                    data={Notification}
+                    renderItem={renderNotification}
+                    keyExtractor={item => `${item._id.$oid}`}
+                />
             </View>
         </>
     )

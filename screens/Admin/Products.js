@@ -17,6 +17,7 @@ import ListItem from './ListItem'
 
 // icon
 import { AntDesign, Entypo } from '@expo/vector-icons';
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 const { height } = Dimensions.get("window")
 
@@ -25,7 +26,6 @@ export default function Products(props) {
   const [productFilter, setProductFilter] = useState()
   const [loading, setLoading] = useState(true)
   const [token, setToken] = useState()
-  const [focus, setFocus] = useState();
 
   // delete dishes
   const deleteDish = (id) => {
@@ -85,12 +85,13 @@ export default function Products(props) {
           placeholder="Search product"
           placeholderTextColor="rgba(255, 255, 255, 0.8)"
           style={styles.searchInput}
-          // onFocus={openList}
           onChangeText={(text) => searchProduct(text)}
         />
-        {focus == true ? (
-          <AntDesign name="closecircle" size={16} color="white" onPress={onBlur} style={styles.closeIcon} />
-        ) : null}
+        <TouchableOpacity style={{ marginLeft: 20 }}
+          onPress={() => props.navigation.navigate("Orders")}
+        >
+          <Icon name="cart-arrow-down" color="white" size={30} />
+        </TouchableOpacity>
       </View>
       <View style={{ borderBottomWidth: 1, borderColor: '#ccc', marginTop: 20, opacity: 0.5 }}></View>
 
@@ -158,8 +159,7 @@ const styles = StyleSheet.create({
     color: 'white',
     borderRadius: 10,
     padding: 10,
-    // paddingLeft: 60,
-    width: '80%',
+    width: '60%',
     marginHorizontal: 10
   },
   searchIcon: {
