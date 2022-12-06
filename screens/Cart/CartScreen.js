@@ -10,7 +10,8 @@ import { COLOR } from '../../assets/font/color'
 
 // Component
 import CartItem from '../../components/Cart/CartItem'
-export default function CartScreen() {
+import CheckoutNavigator from '../../Navigators/CheckoutNavigator'
+export default function CartScreen(props) {
   const dispatch = useDispatch()
   const cartItems = useSelector(cartItemsSelector)
   const deliveryPrice = 4.00
@@ -75,7 +76,9 @@ export default function CartScreen() {
                     >
                       <Text style={{ fontSize: 15, color: '#ccc', fontWeight: 'bold' }}>Remove All</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={styles.button}
+                      onPress={() => { props.navigation.navigate("CheckoutScreen") }}
+                    >
                       <Text style={{ fontSize: 15, color: 'white', fontWeight: 'bold' }}>Pay</Text>
                     </TouchableOpacity>
                   </View>
