@@ -135,7 +135,6 @@ export default function Products(props) {
                   onPress={() => props.navigation.navigate("ProductForm")}
                 >
                   <View>
-
                     <Entypo name="plus" size={24} color="white" />
                   </View>
                 </TouchableOpacity>
@@ -160,7 +159,7 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     backgroundColor: COLOR.mainColor,
-    paddingTop: StatusBar.currentHeight + 10,
+    paddingTop: Platform.OS == "android" ? StatusBar.currentHeight + 10 : 40,
     flex: 1
     // height: '100%'
   },

@@ -94,6 +94,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: StatusBar.currentHeight,
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingTop: Platform.OS == "android" ? 0 : 40
   }
 })

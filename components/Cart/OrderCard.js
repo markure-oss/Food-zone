@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Platform } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { COLOR } from '../../assets/font/color'
 import { Picker } from '@react-native-picker/picker';
@@ -104,7 +104,11 @@ export default function OrderCard(props) {
         <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
           <Text style={styles.label}>Status:</Text>
           <Text style={{ color: cardColor, marginLeft: 5 }}>{order.status}</Text>
-          <Text style={{ width: 10, height: 10, backgroundColor: cardColor, borderRadius: 10, marginBottom: 3, marginLeft: 5 }}></Text>
+          {
+            Platform.OS == "android"
+              ? <Text style={{ width: 10, height: 10, backgroundColor: cardColor, borderRadius: 10, marginBottom: 3, marginLeft: 5 }}></Text>
+              : <View style={{ width: 10, height: 10, backgroundColor: cardColor, borderRadius: 10, marginBottom: 3, marginLeft: 5 }}></View>
+          }
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
           <Text style={styles.label}>City:</Text>

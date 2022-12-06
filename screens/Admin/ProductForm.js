@@ -372,7 +372,7 @@ export default function ProductForm(props) {
 const styles = StyleSheet.create({
 
   container: {
-    paddingTop: Platform.OS == "android" ? StatusBar.currentHeight : 0,
+    paddingTop: Platform.OS == "android" ? StatusBar.currentHeight : 60,
     backgroundColor: COLOR.mainColor,
   },
   formContainer: {

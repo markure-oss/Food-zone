@@ -10,7 +10,7 @@ import slides from '../slides'
 import OnboardingItem from '../components/OnboardingItem'
 import Paginator from '../components/Paginator'
 import NextButton from '../components/NextButton'
-import Main from '../Navigators/Main'
+
 
 export default function Onboarding({ navigation }) {
   const [currentIndex, setCurrentItem] = useState(0)
