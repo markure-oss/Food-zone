@@ -14,10 +14,15 @@ import baseUrl from '../../common/baseUrl'
 // component
 import Loading from '../../components/Loading'
 import ListItem from './ListItem'
-
+import OrderIcon from '../../components/Cart/OrderIcon'
 // icon
 import { AntDesign, Entypo } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome'
+
+// redux
+import { useDispatch } from 'react-redux'
+import { orderPendingSlice } from '../../redux/slices/orderPending'
+
 
 const { height } = Dimensions.get("window")
 
@@ -26,6 +31,7 @@ export default function Products(props) {
   const [productFilter, setProductFilter] = useState()
   const [loading, setLoading] = useState(true)
   const [token, setToken] = useState()
+  const dispatch = useDispatch()
 
   // delete dishes
   const deleteDish = (id) => {
@@ -66,6 +72,16 @@ export default function Products(props) {
           setProductFilter(res.data)
           setLoading(false)
         })
+
+      axios
+        .get(`${baseUrl}orders`)
+        .then((res) => {
+          const orderPending = res.data.filter(order => order.status == "Pending")
+          dispatch(orderPendingSlice.actions.changeOrderPending(orderPending.length))
+        })
+        .catch((error) => {
+          console.log(error)
+        })
       return () => {
         setProductList()
         setProductFilter()
@@ -91,6 +107,7 @@ export default function Products(props) {
           onPress={() => props.navigation.navigate("Orders")}
         >
           <Icon name="cart-arrow-down" color="white" size={30} />
+          <OrderIcon />
         </TouchableOpacity>
       </View>
       <View style={{ borderBottomWidth: 1, borderColor: '#ccc', marginTop: 20, opacity: 0.5 }}></View>

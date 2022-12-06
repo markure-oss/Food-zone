@@ -27,20 +27,6 @@ let { height } = Dimensions.get("window")
 
 const listButton = [
   {
-    id: 1,
-    name: "Hung Pham",
-    iconName: "ios-person-outline",
-    endButton: "edit",
-    sizeIcon: 24
-  },
-  {
-    id: 2,
-    name: "ptuanhungg@gmail.com",
-    iconName: "chatbox-ellipses-outline",
-    endButton: "edit",
-    sizeIcon: 24
-  },
-  {
     id: 3,
     name: "********",
     iconName: "lock-closed-outline",
@@ -61,13 +47,6 @@ const listButton = [
     endButton: "arrow-right",
     sizeIcon: 24
   },
-  {
-    id: 6,
-    name: "Log Out",
-    iconName: "settings-outline",
-    endButton: "arrow-right",
-    sizeIcon: 24
-  }
 ]
 export default function Profile(props) {
   const context = useContext(AuthGlobal)
@@ -105,74 +84,89 @@ export default function Profile(props) {
     <>
       {
         loading ? <Loading /> :
-          <View style={styles.profileContainer}>
-            <Text style={styles.titleProfile}>Profile</Text>
-            <View style={styles.profileCard}>
-              <View style={styles.borderAvatar}>
-                <Image
-                  style={styles.avatar}
-                  source={require("../assets/images/profile.jpg")}
-                />
+          <ScrollView>
+            <View style={styles.profileContainer}>
+              <Text style={styles.titleProfile}>Profile</Text>
+              <View style={styles.profileCard}>
+                <View style={styles.borderAvatar}>
+                  <Image
+                    style={styles.avatar}
+                    source={require("../assets/images/profile.jpg")}
+                  />
+                </View>
+                <View style={{ justifyContent: 'center', padding: 20 }}>
+                  <Text style={{ fontSize: 20, color: '#fff', fontWeight: 'bold' }}>
+                    {userProfile ? userProfile.name : "Error"}
+                  </Text>
+                </View>
               </View>
-              <View style={{ justifyContent: 'center', padding: 20 }}>
-                <Text style={{ fontSize: 20, color: '#fff', fontWeight: 'bold' }}>
-                  {userProfile ? userProfile.name : "Error"}
-                </Text>
-              </View>
-            </View>
-            <View style={{ height: height }}>
-              {/* {
-            listButton.map((button) => {
-              return (
-                <TouchableOpacity key={button.id}
+              <View style={{ height: height }}>
+                {
+                  listButton.map((button) => {
+                    return (
+                      <TouchableOpacity key={button.id}
+                        style={styles.cardItem}>
+                        <View style={{
+                          flexDirection: 'row', alignItems: 'center',
+                        }}>
+                          <Ionicons name={button.iconName} size={button.sizeIcon} color="black" />
+                          <Text style={{ fontSize: 17, marginLeft: 10, color: COLOR.mainColor }}>{button.name}</Text>
+                        </View>
+                        <View>
+                          <Feather name={button.endButton} size={button.sizeIcon} color="black" />
+                        </View>
+                      </TouchableOpacity>
+                    )
+                  })
+                }
+                <TouchableOpacity
                   style={styles.cardItem}>
                   <View style={{
                     flexDirection: 'row', alignItems: 'center',
                   }}>
-                    <Ionicons name={button.iconName} size={button.sizeIcon} color="black" />
-                    <Text style={{ fontSize: 17, marginLeft: 10, color: COLOR.mainColor }}>{button.name}</Text>
+                    <Ionicons name="chatbox-ellipses-outline" size={24} color="black" />
+                    <Text style={{ fontSize: 17, marginLeft: 10, color: COLOR.mainColor }}>
+                      {userProfile ? userProfile.phone : "Error"}</Text>
                   </View>
                   <View>
-                    <Feather name={button.endButton} size={button.sizeIcon} color="black" />
+                    <Feather name="edit" size={24} color="black" />
                   </View>
                 </TouchableOpacity>
-              )
-            })
-          } */}
-              <TouchableOpacity
-                style={styles.cardItem}>
-                <View style={{
-                  flexDirection: 'row', alignItems: 'center',
-                }}>
-                  <Ionicons name="chatbox-ellipses-outline" size={24} color="black" />
-                  <Text style={{ fontSize: 17, marginLeft: 10, color: COLOR.mainColor }}>
-                    {userProfile ? userProfile.email : "Error"}</Text>
-                </View>
-                <View>
-                  <Feather name="edit" size={24} color="black" />
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.cardItem}
-                onPress={() => {
-                  AsyncStorage.removeItem("jwt")
-                  logoutUser(context.dispatch)
-                  props.navigation.navigate("Login")
-                }}
-              >
-                <View style={{
-                  flexDirection: 'row', alignItems: 'center',
-                }}>
-                  <Ionicons name="settings-outline" size={24} color="black" />
-                  <Text style={{ fontSize: 17, marginLeft: 10, color: COLOR.mainColor }}>
-                    Logout</Text>
-                </View>
-                <View>
-                  <Feather name="edit" size={24} color="black" />
-                </View>
-              </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.cardItem}>
+                  <View style={{
+                    flexDirection: 'row', alignItems: 'center',
+                  }}>
+                    <Ionicons name="chatbox-ellipses-outline" size={24} color="black" />
+                    <Text style={{ fontSize: 17, marginLeft: 10, color: COLOR.mainColor }}>
+                      {userProfile ? userProfile.email : "Error"}</Text>
+                  </View>
+                  <View>
+                    <Feather name="edit" size={24} color="black" />
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.cardItem}
+                  onPress={() => {
+                    AsyncStorage.removeItem("jwt")
+                    logoutUser(context.dispatch)
+                    props.navigation.navigate("Login")
+                  }}
+                >
+                  <View style={{
+                    flexDirection: 'row', alignItems: 'center',
+                  }}>
+                    <Ionicons name="settings-outline" size={24} color="black" />
+                    <Text style={{ fontSize: 17, marginLeft: 10, color: COLOR.mainColor }}>
+                      Logout</Text>
+                  </View>
+                  <View>
+                    <Feather name="edit" size={24} color="black" />
+                  </View>
+                </TouchableOpacity>
+              </View>
             </View>
-          </View>
+          </ScrollView>
       }
 
     </>

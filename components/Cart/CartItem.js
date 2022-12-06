@@ -47,9 +47,10 @@ export default function CartItem(props) {
               </Text>
             </View>
             <TouchableOpacity
+
               onPress={() => handleClickRemove(item._id)}
             >
-              <Ionicons name="close" size={15} color="#ccc" />
+              <Ionicons name="close" style={{ backgroundColor: '#ccc', borderRadius: 10, opacity: 0.8 }} size={15} color={COLOR.mainColor} />
             </TouchableOpacity>
           </View>
           <View style={styles.optionBuy}>

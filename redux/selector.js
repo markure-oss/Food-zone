@@ -10,3 +10,5 @@ export const cartItemsSelector = (state) => state.cart.cartItems
 export const selectBasketTotal = (state) =>
   state.cart.cartItems.reduce((total, item) =>
     total += item.price * item.quantity, 0)
+
+export const orderPendingSelector = (state) => state.orderPending.numberOrderPending

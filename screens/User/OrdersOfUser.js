@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView, Platform, StatusBar } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Image, Platform, StatusBar } from 'react-native'
 import React, { useState, useCallback, useContext } from 'react'
 import { COLOR } from '../../assets/font/color'
 import { useFocusEffect } from '@react-navigation/native'
@@ -55,10 +55,35 @@ export default function Orders(props) {
           <Text style={styles.title}>Orders</Text>
           <View style={{ width: '100%', }}>
             {
-              orderListAll.map((order) => {
-                // console.log(order.customer._id)
-                return <OrderCard key={order._id} order={order} navigation={props.navigation} isAdmin={context.stateUser.user.isAdmin} />
-              })
+              orderListAll.length > 0 ?
+                orderListAll.map((order) => {
+                  // console.log(order.customer._id)
+                  return <OrderCard key={order._id} order={order} navigation={props.navigation} isAdmin={isAdmin} />
+                }
+                ) : <View style={{ flex: 1, alignItems: 'center', }}>
+                  <View style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: 700,
+                    backgroundColor: '#fff',
+                    width: '100%'
+                  }}>
+                    <Image style={{
+                      width: 200,
+                      height: 120,
+                      alignItems: 'center',
+                      marginTop: -200
+                    }}
+                      source={{ uri: 'https://img.freepik.com/premium-vector/professional-detective-with-mustaches-magnifier-follows-footprints_87689-1154.jpg' }}
+                    />
+                    <Text style={{
+                      alignSelf: 'center',
+                      marginTop: 40,
+                    }}>
+                      No Products Match The Selected Criteria !
+                    </Text>
+                  </View>
+                </View>
             }
           </View>
         </View>

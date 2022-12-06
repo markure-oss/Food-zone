@@ -63,7 +63,6 @@ const ProductContainer = (props) => {
             axios.get(`${baseUrl}categories`)
                 .then((res) => {
                     setCategories(res.data)
-                    // console.log(res.data)
                     setLoading(false)
                 })
                 .catch((err) => console.log(err))
@@ -73,19 +72,11 @@ const ProductContainer = (props) => {
                     setProducts(res.data);
                     setProductFiltered(res.data);
                     setFocus(false);
-                    // setCategories(productCategories);
                     setProductCtg(res.data);
                     setActive(-1);
                     setInitialState(res.data);
                 })
                 .catch((err) => console.log(err))
-            // setProducts(data);
-            // setProductFiltered(data);
-            // setFocus(false);
-            // // setCategories(productCategories);
-            // setProductCtg(data);
-            // setActive(-1);
-            // setInitialState(data);
 
             return (() => {
                 setProducts([]);
@@ -220,6 +211,7 @@ const ProductContainer = (props) => {
             {focus == true ? (
                 <SearchedProduct
                     productsFiltered={productsFiltered}
+                    navigation={props.navigation}
                 />
             ) : (
                 loading == false ? (

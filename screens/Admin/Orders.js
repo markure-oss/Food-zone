@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView, Platform, StatusBar } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Platform, StatusBar, Image } from 'react-native'
 import React, { useState, useCallback, useContext } from 'react'
 import { COLOR } from '../../assets/font/color'
 import { useFocusEffect } from '@react-navigation/native'
@@ -13,25 +13,17 @@ import Loading from '../../components/Loading'
 // Context
 import AuthGlobal from '../../Context/store/AuthGlobal'
 
-
 export default function Orders(props) {
   const context = useContext(AuthGlobal)
   const [isAdmin, setIsAdmin] = useState(false)
-  const [customer, setCustomer] = useState('')
   const [orderListAll, setOrderListAll] = useState()
   const [loading, setLoading] = useState(true)
-
   useFocusEffect(
     useCallback(() => {
       axios
         .get(`${baseUrl}orders`)
         .then((res) => {
-          // if (isAdmin) {
           setOrderListAll(res.data)
-          // }
-          // else {
-          //   setOrderListAll(checkOrder(res.data))
-          // }
           setLoading(false)
         })
         .catch((error) => {
@@ -39,13 +31,11 @@ export default function Orders(props) {
         })
       setLoading(true)
       setIsAdmin(context.stateUser.user.isAdmin)
-      setCustomer(context.stateUser.user.customerId)
     }, [context.stateUser.isAuthenticated])
   )
 
 
   return (
-
     loading ? <Loading /> :
       <ScrollView
         viewIsInsideTabBar={true}
@@ -60,16 +50,35 @@ export default function Orders(props) {
             {
               orderListAll.length > 0 ?
                 orderListAll.map((order) => {
-                  // console.log(order.customer._id)
                   return <OrderCard key={order._id} order={order} navigation={props.navigation} isAdmin={isAdmin} />
                 }
                 ) : <View style={{ flex: 1, alignItems: 'center', }}>
-                  <Text style={{ color: '#ccc', fontSize: 30, }}>No Orders</Text>
+                  <View style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: 700,
+                    backgroundColor: '#fff',
+                    width: '100%'
+                  }}>
+                    <Image style={{
+                      width: 200,
+                      height: 120,
+                      alignItems: 'center',
+                      marginTop: -200
+                    }}
+                      source={{ uri: 'https://img.freepik.com/premium-vector/professional-detective-with-mustaches-magnifier-follows-footprints_87689-1154.jpg' }}
+                    />
+                    <Text style={{
+                      alignSelf: 'center',
+                      marginTop: 40,
+                    }}>
+                      No Products Match The Selected Criteria !
+                    </Text>
+                  </View>
                 </View>
             }
           </View>
         </View>
-
       </ScrollView >
 
   )
