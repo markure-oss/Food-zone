@@ -130,7 +130,7 @@ export default function OrderCard(props) {
                 // style={{ width: undefined }}
                 dropdownIconColor={"#ccc"}
                 selectedValue={pickerValue}
-                style={{ width: '50%', color: 'white' }}
+                style={{ width: '50%', color: '#fff' }}
                 onValueChange={(itemValue, itemIndex) => {
                   setPickerValue(itemValue)
                   setStatusChange(itemValue)
@@ -138,7 +138,7 @@ export default function OrderCard(props) {
               >
                 {
                   codes.map((code, index) => {
-                    return <Picker.Item key={code.code} label={code.name} value={code.name} />
+                    return <Picker.Item key={code.code} label={code.name} value={code.name} style={{color: "#fff"}}/>
                   })
                 }
               </Picker>
