@@ -53,12 +53,10 @@
 1. Build a Great eCommerce Mobile Application with React Native, Redux, Node, Express & MongoDB
 2. Develop cross-platform (iOS and Android) mobile apps without knowing Swift, ObjectiveC or Java/ Android
 3. An actual real-world project built in a linear and progressive manner
-4. Great Division of the course so you can pick up FullStack, Frontend or Backend
-5. Admin area to manage customers, products & orders from mobile phone!
-6. Product search, carousel & more
-7. Learn NodeJS API (Backend) Development
-8. Learn to Implement Authentication based on JWT
-9. Understand the terminology and concepts of Redux
-10. Get up to speed with React design principles and methodologies
-11. Make truly reusable components that look great
-12. Discover mobile design patterns used by experienced engineers
+4. Admin area to manage customers, products & orders from mobile phone!
+5. Product search, carousel & more
+6. Learn NodeJS API (Backend) Development
+7. Learn to Implement Authentication based on JWT
+8. Understand the terminology and concepts of Redux
+9. Get up to speed with React design principles and methodologies
+10. Make truly reusable components that look great
