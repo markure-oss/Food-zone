@@ -1,31 +1,17 @@
-# 🚀 Build E-Shop Mobile App with Admin Panel and Authentication using React Native, Expo, Redux, Context API and much more
+# React Native Elements App
 
-## 🔥learn to use technologies like:
-- React Native
+![](assets/images/simu3.png)
+___
+#### Mobile app
+This is the Demo app for [React Native Elements](https://github.com/react-native-elements/react-native-elements) built with [Expo](https://expo.dev/). The purpose of this app is to demonstrate the usage of the various UI components that React Native Elements provides out of the box.
 
-- NodeJs
-
-- Express
-
-- MongoDB
-
-- Redux
-
-- Context API
-
-- React Navigation
-
-- Styled Components
-
-- And Native Base
-
-*☄️You learn in this course how to use mongoDb without any installing extra tools, MongoDB is now on cloud, so you will store your database in safe place!*
+This app also works on the <code>web</code> platform using [React Native Web](https://github.com/necolas/react-native-web). If you are looking to build a React Native mobile app which can reuse the code to deploy it on the web, this is the right place to begin. We decided to use [Expo](https://expo.dev/), which reduces the effort required to build an app once and deploy it anywhere.
 
 
-### 🔥The main features:
+#### The main features:
 
 - Full featured shopping cart
-
+ 
 - Top products carousel
 
 - Product pagination
@@ -48,15 +34,40 @@
 
 - and much more ...
 
----------------
-## 👉 Notion
-1. Build a Great eCommerce Mobile Application with React Native, Redux, Node, Express & MongoDB
-2. Develop cross-platform (iOS and Android) mobile apps without knowing Swift, ObjectiveC or Java/ Android
-3. An actual real-world project built in a linear and progressive manner
-4. Admin area to manage customers, products & orders from mobile phone!
-5. Product search, carousel & more
-6. Learn NodeJS API (Backend) Development
-7. Learn to Implement Authentication based on JWT
-8. Understand the terminology and concepts of Redux
-9. Get up to speed with React design principles and methodologies
-10. Make truly reusable components that look great
+
+### Getting Started
+___
+#### Run it locally
+1.Install [Expo CLI](https://docs.expo.dev/versions/latest/workflow/expo-cli/) <br>
+<code>[sudo] npm install -g expo-cli</code><br>
+
+*If permissions errors then please use --unsafe-perm=true flag too [npm/npm#16766](https://github.com/npm/npm/issues/16766)*
+
+2.Clone the project<br>
+
+<code> https://github.com/markure-oss/Food-zone.git</code>
+
+3.Install dependencies<br>
+
+<code>cd Food-zone <br>
+ #### # yarn install
+yarn install
+#### # Using npm
+npm install</code>
+
+4.Run the cross-platform app (uses [Expo](https://docs.expo.dev/))
+<code>
+#### # Using yarn
+yarn start
+
+#### # Using npm
+npm start
+</code>
+<br>
+
+
+### Call APIs from Ngrok url
+___
+<code>let baseUrl = "https://f768-42-115-238-242.ngrok-free.app/api/v1/" </code>
+
+replace path with your ngrok url in application 
